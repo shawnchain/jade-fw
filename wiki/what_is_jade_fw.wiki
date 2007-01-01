@@ -1,4 +1,4 @@
-#labels Featured,Document,Introduction
+#labels Featured,Document,Document-Intro
 #AnotherWheel of IoC/DIP framework
 
 Yes, it's another wheel, let me explain why I need to create another wheel.
