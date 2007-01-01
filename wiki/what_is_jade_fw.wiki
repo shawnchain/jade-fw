@@ -4,10 +4,10 @@
 Yes, it's another wheel, let me explain why I need to create another wheel.
 
 My first experience about IoC pattern was started from a project with Spring in early 2004.
-In the following similary projects, I'm struggling with the configuration hell and the un-mature AOP functionality of spring.
+In the following similarly projects, I'm struggling with the configuration hell and the un-mature AOP functionality of spring.
 
  * The Configuration Hell
- I believe most of you have that experience as mine, In a real project, as the time goes by, the spring configuration XML file becomes larger and larger, hard to mataince and debug. I need a much simpler way to config the components, not only by xml config file but also by annontations.
+ I believe most of you have that experience as mine, In a real project, as the time goes by, the spring configuration XML file becomes larger and larger, hard to maintaince and debug. I need a much simpler way to config the components, not only by xml config file but also by annotations.
  
  * The Broken-leg AOP functionality
  In Spring1, in order to to use AOP, we must use the proxy wrapper bean, and by default it only supports singleton beans. To my experience, in most cases, we need prototyped aspect instances. Configuring non-singleton bean proxy wrapper is very complex in spring1. Further more, the performance of instantiating non-singleton bean proxy wrapper in spring1 is fairly poor.
@@ -16,9 +16,9 @@ Above is the initial motivation to me to create another wheel that meets my own 
 
 Then I noticed the [http://www.picocontainer.org/ PicoContainer project] and was attracted by it's small/cute core codes. It gives me the first idea about how to implement an IoC container.
 
-ShenLi's [http://sourceforge.net/projects/joyaop JoyAOP] showed me the power of CGLib and made me convienced that it's possible to implement my own AOP framework.
+ShenLi's [http://sourceforge.net/projects/joyaop JoyAOP] showed me the power of CGLib and convinced me to use it to implement my own AOP framework.
 
-Ivr's AOSD book ensured me that we can designing/modeling requrements from aspect's view.
+Ivr's AOSD book ensured me that we can designing/modeling requirements from aspect's view.
 
 Last but not lease, it's just for fun!
 
