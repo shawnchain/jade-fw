@@ -16,7 +16,7 @@ Above is the initial motivation to me to create another wheel that meets my own 
 
 Then I noticed the [http://www.picocontainer.org/ PicoContainer project] and was attracted by it's small/cute core codes. It gives me the first idea about how to implement an IoC container.
 
-ShenLi's [http://sourceforge.net/projects/joyaop JoyAOP] showed me the power of CGLib and convinced me to use it to implement my own AOP framework.
+ShenLi's [http://sourceforge.net/projects/joyaop JoyAOP] showed me the power of CGLib and convinced me to use CGLib to implement my own AOP framework.
 
 Ivr's AOSD book ensured me that we can designing/modeling requirements from aspect's view.
 
