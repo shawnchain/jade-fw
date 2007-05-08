@@ -1,6 +1,0 @@
-#labels Featured
-= Welcome to JADE Framework's new google code base! =
-
-
-
-
