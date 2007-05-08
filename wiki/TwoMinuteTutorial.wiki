@@ -93,8 +93,10 @@ I was kissed by test.model.Girl@116ab4e
 Now, I hope you have got some idea about JADE-Core. In fact, the above examples are so trivial that could not show you everything. In the next tutorial, We will discuss something advanced about JADE Core.
 
 You can:
- 1. Take a rest
- 2. Check [wiki:AdvancedComponentConfig more complex configs]
- 3. Read more about JADE Framework - [wiki:quick_start/5_min_intro Five minute introduction]
+ * Take a rest
+ * Check AdvancedComponentConfig
+ * Read more about JADE Framework - FiveMinuteIntroduction
 
 Also, there is a demo site available at http://jade.nonsoft.com/demo/ , which is powered by JADE Framework 
+
+
