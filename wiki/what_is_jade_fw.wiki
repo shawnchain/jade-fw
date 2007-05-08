@@ -1,25 +1,38 @@
 #labels Featured,Document,Document-Intro
-#AnotherWheel of IoC/DIP framework
+= Welcome to JADE Project =
 
-Yes, it's another wheel, let me explain why I need to create another wheel.
+== What Is JADE ? ==
+JADE is a full-stack framework for Java application development.
 
-My first experience about IoC pattern was started from a project with Spring in early 2004.
-In the following similarly projects, I'm struggling with the configuration hell and the un-mature AOP functionality of spring.
+1. The IoC/DI Core Container:
+   * Seamlessly integrated with with my own AOP framework.
+   * Enhanced dependency injection. Not only support inject components, but also support inject variables form any kind of context. Support expressive injection instruction. Provide navigating language to walk through the dependency graph.
+   * Support annotations to markup the properties/setters/ctors for DI, under both java1.4 or 1.5.
+   * Extended the PicoContainer interface and compatible with former [http://www.picocontainer.org PicoContainers].
+   * Simplified XML configuration with XSD schema.
+2. The Web Framework
+   * Rails like MVC web development coding by convention
+   * Seamlessly integrated with core container. Actions are managed by DI container as well so we can use dependency injection, [wiki:rt/action_ioc_support runtime data injection] and apply standard AOP-alliance interceptors on actions transparently.
+   * Support pluggable template language, currently velocity & freemarker is supported.
+   * Integrated with the latest jakarta commons validator framework to validate user inputs.
+   * Multi-module support and will support mounting OSGI bundle soon.
+   * An [http://jade.nonsoft.com/demo/je/ eclipse plug-in] is available that helps developer to manage/develop/debug JADE-Web powered projects with ease.
+   * ...
+3. Extension components such as DAO, Access Control...
 
- * The Configuration Hell
- I believe most of you have that experience as mine, In a real project, as the time goes by, the spring configuration XML file becomes larger and larger, hard to maintaince and debug. I need a much simpler way to config the components, not only by xml config file but also by annotations.
- 
- * The Broken-leg AOP functionality
- In Spring1, in order to to use AOP, we must use the proxy wrapper bean, and by default it only supports singleton beans. To my experience, in most cases, we need prototyped aspect instances. Configuring non-singleton bean proxy wrapper is very complex in spring1. Further more, the performance of instantiating non-singleton bean proxy wrapper in spring1 is fairly poor.
- 
-Above is the initial motivation to me to create another wheel that meets my own needs.
+4. Maven plugins support
 
-Then I noticed the [http://www.picocontainer.org/ PicoContainer project] and was attracted by it's small/cute core codes. It gives me the first idea about how to implement an IoC container.
+5. Eclipse plugins support
 
-ShenLi's [http://sourceforge.net/projects/joyaop JoyAOP] showed me the power of CGLib and convinced me to use CGLib to implement my own AOP framework.
+== Tutorials ==
+ * JADE Container Quick Start
+  * [wiki:quick_start/1_min_tutorial One Minute Tutorial]
+  * [wiki:quick_start/2_min_tutorial Two Minute Tutorial]
+  * [wiki:quick_start/5_min_intro Five Minute Introduction]
+ * JADE Web Quick Start
+  * [wiki:quick_start/create_n_run_web_app_with_maven Create and run JADE-Web powered application in 1 Mins]
 
-Ivr's AOSD book ensured me that we can designing/modeling requirements from aspect's view.
 
-Last but not lease, it's just for fun!
 
-Then JADE-Framework born.
+
+
