@@ -1,0 +1,23 @@
+<!-- Forum List Page -->
+
+<div class="table_title">Forum List</div>
+<table width="100%" class="list_table" cellspacing="1" cellpading="2">
+  <tr>
+  <th>Forum</th>
+  <th>Creation Date</th>
+  <th>Modification Date</th>
+  <th>Creator</th>
+  <th>Posts</th>
+  <th>Operations</th>
+  </tr>	
+#foreach ($f in $forums)
+  <tr class="normal_tr" onMouseOver="this.className='hilight_tr'" onMouseOut="this.className='normal_tr'">
+  <td><a href="Forum.htm?id=${f.id}">$f.title</a></td>
+  <td>$f.creationDate</td>
+  <td>$f.modificationDate</td>
+  <td>f.author</td>
+  <td>f.countMessage()</td>
+  <td><a href="ForumEdit.htm?id=${f.id}">编辑</a></td>
+  </tr>
+#end
+</table>
