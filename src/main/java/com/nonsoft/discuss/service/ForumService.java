@@ -5,6 +5,10 @@ import java.util.Iterator;
 
 import com.nonsoft.annotation.ConvertResult;
 import com.nonsoft.annotation.InjectComponent;
+import com.nonsoft.bo.Entity;
+import com.nonsoft.discuss.domain.IForum;
+import com.nonsoft.discuss.domain.internal.Forum;
+import com.nonsoft.discuss.entity.ForumEntity;
 import com.nonsoft.persistence.hibernate3.HibernateDAOSupport;
 
 public class ForumService {
@@ -19,5 +23,9 @@ public class ForumService {
     @ConvertResult(from=com.nonsoft.bo.Entity.class, to=com.nonsoft.discuss.domain.IForum.class)
     public Iterator listForums(){
         return daoSupport.iterate("from ForumEntity");
+    }
+    
+    public IForum getForum(Long id){
+        return new Forum((Entity)daoSupport.load(ForumEntity.class, id));
     }
 }
