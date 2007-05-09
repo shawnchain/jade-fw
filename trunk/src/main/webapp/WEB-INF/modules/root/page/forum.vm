@@ -1,0 +1,13 @@
+##sample template
+Topics in Forum "${forum.title}"<br/>
+-----------------------------------------
+#foreach ($t in ${forum.listTopic()})
+  <tr class="normal_tr" onMouseOver="this.className='hilight_tr'" onMouseOut="this.className='normal_tr'">
+  <td><a href="topic.htm?id=${t.id}">$t.title</a></td>
+  <td>$t.creationDate</td>
+  <td>$t.modificationDate</td>
+  <td>$t.author</td>
+  <td>${t.countMessage()}</td>
+  <td><a href="topic_edit.htm?id=${t.id}">编辑</a></td>
+  </tr>
+#end
