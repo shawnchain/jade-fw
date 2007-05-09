@@ -1,0 +1,9 @@
+<html>
+  <body>
+  Hello world! <p/>
+  Current time is: ${currentTime}</p>
+  ## Your IP is: ${request.unWrap().getRemoteAddr()}
+  Your IP is: ${ip}<p/>
+  Container: ${container}
+  </body>
+</html>
