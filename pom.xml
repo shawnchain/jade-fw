@@ -146,7 +146,6 @@
 							<maxIdleTime>60000</maxIdleTime>
 						</connector>
 					</connectors>
-					<webAppSourceDirectory>src/webapp</webAppSourceDirectory>
 				</configuration>
 			</plugin>
 		</plugins>
