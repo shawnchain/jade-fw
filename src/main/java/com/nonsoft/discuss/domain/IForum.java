@@ -35,5 +35,27 @@ import java.util.Iterator;
  */
 
 public interface IForum extends IContent{
+    /**
+     * 
+     * @return
+     */
     public Iterator listTopics();
+    
+    /**
+     * 
+     * @return
+     */
+    public Integer countMessages();
+    
+    /**
+     * 
+     * @return
+     */
+    public Integer countTopics(); 
+    
+    /**
+     * 
+     * @return
+     */
+    public String getDescription();
 }

@@ -23,11 +23,14 @@ package com.nonsoft.discuss.domain.internal;
 
 import java.util.Iterator;
 
+import org.hibernate.Session;
+
 import com.nonsoft.annotation.ConvertResult;
 import com.nonsoft.annotation.InjectComponent;
 import com.nonsoft.bo.Entity;
 import com.nonsoft.discuss.domain.IForum;
 import com.nonsoft.persistence.hibernate3.HibernateDAOSupport;
+import com.nonsoft.persistence.hibernate3.HibernateTemplate;
 
 /**
  * <p>
@@ -52,5 +55,32 @@ public class Forum extends Content implements IForum{
     @ConvertResult(from=com.nonsoft.bo.Entity.class, to=com.nonsoft.discuss.domain.ITopic.class)
     public Iterator listTopics() {
         return daoSupport.iterate("from TopicEntity t where t.forum.id=" + getId());
+    }
+
+    public Integer countMessages() { 
+        return (Integer)daoSupport.execute(new HibernateTemplate(){
+            @Override
+            public Object body(Session session) throws Exception {
+                //FIXME use a dedicated field to store the total topics/messages count. But need the message/event support so that to 
+                // update those fields when topic/message added/deleted
+                
+                //Which is faster ?
+                //return session.createQuery("SELECT count(*) FROM MessageEntity m join m.topic t WHERE t.forum.id=" + getId()).list().get(0);\
+                return session.createQuery("SELECT count(*) FROM MessageEntity m WHERE m.topic.forum.id=" + getId()).list().get(0);
+            }
+        });
+    }
+
+    public Integer countTopics() {
+        return (Integer)daoSupport.execute(new HibernateTemplate(){
+            @Override
+            public Object body(Session session) throws Exception {
+                return session.createQuery("select count(*) from TopicEntity t where t.forum.id=" + getId()).list().get(0);
+            }
+        });
+    }
+
+    public String getDescription() {
+        return (String)this.getEntityProperty("description");
     }
 }

@@ -90,44 +90,44 @@
 		</profile>
 	</profiles>
 	<repositories>
-    <!-- JADE release/snapshot repository -->
-    <repository>
-      <id>jade-repository-snapshot</id>
-      <name>JADE Project Server</name>
-      <url>http://maven.nonsoft.com/snapshots</url>
-	  <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-    </repository>
-    <repository>
-      <id>jade-repository-release</id>
-      <name>JADE Project Server</name>
-      <url>http://maven.nonsoft.com/releases</url>
-    </repository>
-  </repositories>
-  
-  <pluginRepositories>
-  	<pluginRepository>
-      <id>jade-repository-snapshot</id>
-     <name>JADE Project Server</name>
-     <url>http://maven.nonsoft.com/snapshots</url>
- 	 <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-    </pluginRepository>
-	
-    <pluginRepository>
-      <id>jade-repository-release</id>
-      <name>JADE Project Server</name>
-      <url>http://maven.nonsoft.com/releases</url>
-    </pluginRepository>
-  </pluginRepositories>
+		<!-- JADE release/snapshot repository -->
+		<repository>
+			<id>jade-repository-snapshot</id>
+			<name>JADE Project Server</name>
+			<url>http://maven.nonsoft.com/snapshots</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+		<repository>
+			<id>jade-repository-release</id>
+			<name>JADE Project Server</name>
+			<url>http://maven.nonsoft.com/releases</url>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>jade-repository-snapshot</id>
+			<name>JADE Project Server</name>
+			<url>http://maven.nonsoft.com/snapshots</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</pluginRepository>
+
+		<pluginRepository>
+			<id>jade-repository-release</id>
+			<name>JADE Project Server</name>
+			<url>http://maven.nonsoft.com/releases</url>
+		</pluginRepository>
+	</pluginRepositories>
 
 	<build>
 		<plugins>
@@ -135,14 +135,18 @@
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
 				<configuration>
+					<!--
+						<webAppSourceDirectory>${basedir}/src/webapp</webAppSourceDirectory>
+					-->
 					<scanIntervalSeconds>10</scanIntervalSeconds>
 					<contextPath>/</contextPath>
-					<!--
+					<connectors>
 						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-						<port>8091</port>
-						<maxIdleTime>60000</maxIdleTime>
+							<port>8091</port>
+							<maxIdleTime>60000</maxIdleTime>
 						</connector>
-					-->
+					</connectors>
+					<webAppSourceDirectory>src/webapp</webAppSourceDirectory>
 				</configuration>
 			</plugin>
 		</plugins>

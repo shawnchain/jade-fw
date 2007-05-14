@@ -16,8 +16,8 @@
   <td>$f.creationDate</td>
   <td>$f.modificationDate</td>
   <td>$f.author</td>
-  <td>${f.countMessage()}</td>
-  <td><a href="ForumEdit.htm?id=${f.id}">编辑</a></td>
+  <td>$f.countTopics() / $f.countMessages()</td>
+  <td><a href="forumEdit.htm?id=${f.id}">编辑</a></td>
   </tr>
 #end
 </table>
