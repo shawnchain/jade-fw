@@ -58,4 +58,10 @@ public interface IForum extends IContent{
      * @return
      */
     public String getDescription();
+    
+    /**
+     * 
+     * @return
+     */
+    public ITopic newTopic(String title, String body);
 }

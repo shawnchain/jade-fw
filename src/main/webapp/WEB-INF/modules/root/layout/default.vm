@@ -1,5 +1,9 @@
 <html>
-	<title>Discuss - The JADE Demo Application</title>
+	<head>
+		<title>Discuss - The JADE Demo Application</title>
+		<link rel="stylesheet" href="css/main.css"></link>
+		<link rel="stylesheet" href="css/forum.css"></link>
+	</head>
 <body>
 $screen_placeholder
 </body>

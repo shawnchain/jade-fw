@@ -1,0 +1,20 @@
+
+Title : $!{topic.title}<br/>
+Body: $!{topic.body}<br/>
+<a href="reply.htm?tid=$!{topic.id}">Reply</a><br/>
+-----------------------------------------<br/>
+replies to this topic <br/>
+-----------------------------------------
+<table width="100%" class="list_table" cellspacing="1" cellpading="2">
+#foreach ($m in ${topic.listMessages()})
+  <tr class="normal_tr" onMouseOver="this.className='hilight_tr'" onMouseOut="this.className='normal_tr'">
+  <td>$m.title</td>
+  <td>$m.body</td>
+  <td>$m.author</td>
+  <td><a href="reply.htm?id=$!{m.id}&tid=$!{topic.id}">Reply</a></td>
+  </tr>
+#end
+</table>
+<br/>
+---------------------------------------<br/>
+<a href="forumList.htm">Back to Forum List</a>

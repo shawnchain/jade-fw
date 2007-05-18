@@ -7,11 +7,11 @@
 		</id>
 		<timestamp name="modificationDate" />
 		<property name="title" />
-		<property name="body" />
+		<property name="body" lazy="true"/>
 		<property name="tag" />
 		<property name="creationDate" />
-		<property name="authorId" />
-
+		<property name="creator" />
+		
 		<many-to-one name="topic" not-null="true"/>
 
 		<many-to-one name="parentMessage" />

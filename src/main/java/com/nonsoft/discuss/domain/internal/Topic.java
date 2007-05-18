@@ -24,12 +24,12 @@ package com.nonsoft.discuss.domain.internal;
 import java.util.Iterator;
 
 import com.nonsoft.annotation.ConvertResult;
-import com.nonsoft.annotation.InjectComponent;
 import com.nonsoft.bo.Entity;
 import com.nonsoft.discuss.domain.IForum;
+import com.nonsoft.discuss.domain.IMessage;
 import com.nonsoft.discuss.domain.ITopic;
+import com.nonsoft.discuss.entity.MessageEntity;
 import com.nonsoft.discuss.entity.TopicEntity;
-import com.nonsoft.persistence.hibernate3.HibernateDAOSupport;
 
 /**
  * <p>
@@ -47,21 +47,38 @@ import com.nonsoft.persistence.hibernate3.HibernateDAOSupport;
 public class Topic extends Content implements ITopic {
 
     private static final long serialVersionUID = -205385204308011458L;
-
-    @InjectComponent()
-    private HibernateDAOSupport daoSupport;
-
+    
     public Topic(Entity entity) {
         super(entity);
     }
 
     public IForum getForum() {
-        return new Forum(((TopicEntity) getEntity()).getForum());
+        return (IForum)newDomainObject(IForum.class, ((TopicEntity) getEntity()).getForum());
     }
 
     @ConvertResult(from=com.nonsoft.bo.Entity.class, to=com.nonsoft.discuss.domain.IMessage.class)
     public Iterator listMessages() {
-        return daoSupport.iterate("from MessageEntity m where m.topic.id=" + getId());
+        return getDaoSupport().iterate("from MessageEntity m where m.topic.id=" + getId());
+    }
+    
+    public IMessage newReply(String title, String body) {
+        return newReply(title,body,null);
+    }
+    
+    public IMessage newReply(String title, String body, IMessage replyMessage){
+        MessageEntity entity = new MessageEntity();
+        if(replyMessage != null){
+            entity.setParentMessage((MessageEntity)replyMessage.getEntity());   
+        }
+        entity.setTopic((TopicEntity)getEntity());
+        entity.setTitle(title);
+        entity.setBody(body);
+        entity.setCreationDate(new java.util.Date());
+        getDaoSupport().saveEntity(entity);
+        return (IMessage)newDomainObject(IMessage.class, entity);
     }
 
+    public Integer countMessages() {
+        return (Integer)getDaoSupport().iterate("select count(*) from MessageEntity m where m.topic.id=" + getId()).next();
+    } 
 }

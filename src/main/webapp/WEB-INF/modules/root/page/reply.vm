@@ -1,0 +1,7 @@
+Reply to the message - ${reply.title}
+<form class="postForm" method="post" id="postForm">
+	Title: <input type="text" name="title" value="$!form.title.value"/>$!{form.title.errorMessage}<br/>
+	Body : <textarea name="body">$!form.body.value</textarea>$!{form.body.errorMessage}<br/>
+	<input type="hidden" name="form" value="postForm" />
+	<input type="submit" value="Post"/>
+</form>

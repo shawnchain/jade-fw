@@ -11,7 +11,7 @@ import com.nonsoft.ioc.IMutableContainer;
 import com.nonsoft.ioc.config.Configuration;
 import com.nonsoft.web.WebApplication;
 
-public class WebTestCase extends TestCase {
+public abstract class WebTestCase extends TestCase {
     protected static IContainer container;
     protected void setUp() throws Exception {
         super.setUp();
@@ -36,8 +36,8 @@ public class WebTestCase extends TestCase {
         super.tearDown();
     }
     
-    public void testNoop(){
-        assertNotNull(container);
-    }
+//    public void testNoop(){
+//        assertNotNull(container);
+//    }
     
 }

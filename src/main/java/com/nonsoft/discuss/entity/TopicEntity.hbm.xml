@@ -6,11 +6,11 @@
 			<generator class="native" />
 		</id>
 		<timestamp name="modificationDate" />
-		<property name="title" unique="true"/>
-		<property name="body" />
+		<property name="title"/>
+		<property name="body" lazy="true" />
 		<property name="tag" />
 		<property name="creationDate" />
-		<property name="authorId" />
+		<property name="creator" />
 		
 		<many-to-one name="forum" />
 	</class>
