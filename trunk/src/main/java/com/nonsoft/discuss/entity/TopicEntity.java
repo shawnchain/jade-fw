@@ -27,63 +27,92 @@ import com.nonsoft.bo.Entity;
  * <p>
  * </p>
  * 
- * <p>Copyright: Copyright (c) 2003-2006 NonSoft.com</p>
+ * <p>
+ * Copyright: Copyright (c) 2003-2006 NonSoft.com
+ * </p>
  * 
  * @author Shawn Qian(shawn.chain@gmail.com)
  * @version 2.0, $Id$
  * @since
  */
 
-public class TopicEntity extends Entity{
+public class TopicEntity extends Entity {
     String title;
+
     String body;
+
     String tag;
+
     java.util.Date creationDate;
+
     java.util.Date modificationDate;
-    Long authorId;
-    //Set Messages;
+
+    // Long authorId;
+    String creator;
+
+    // Set Messages;
     ForumEntity forum;
-    public Long getAuthorId() {
-        return authorId;
-    }
-    public void setAuthorId(Long authorId) {
-        this.authorId = authorId;
-    }
+
+    // public Long getAuthorId() {
+    // return authorId;
+    // }
+    // public void setAuthorId(Long authorId) {
+    // this.authorId = authorId;
+    // }
     public String getBody() {
         return body;
     }
+
     public void setBody(String body) {
         this.body = body;
     }
+
     public java.util.Date getCreationDate() {
         return creationDate;
     }
+
     public void setCreationDate(java.util.Date creationDate) {
         this.creationDate = creationDate;
     }
+
     public ForumEntity getForum() {
         return forum;
     }
+
     public void setForum(ForumEntity forum) {
         this.forum = forum;
     }
+
     public java.util.Date getModificationDate() {
         return modificationDate;
     }
+
     public void setModificationDate(java.util.Date modificationDate) {
         this.modificationDate = modificationDate;
     }
+
     public String getTag() {
         return tag;
     }
+
     public void setTag(String tag) {
         this.tag = tag;
     }
+
     public String getTitle() {
         return title;
     }
+
     public void setTitle(String title) {
         this.title = title;
     }
-    
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
 }

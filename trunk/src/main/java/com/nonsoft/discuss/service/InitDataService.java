@@ -5,8 +5,8 @@ import org.picocontainer.Startable;
 import com.nonsoft.annotation.InjectComponent;
 import com.nonsoft.annotation.Transactional;
 import com.nonsoft.discuss.entity.ForumEntity;
-import com.nonsoft.discuss.entity.MessageEntity;
 import com.nonsoft.discuss.entity.TopicEntity;
+import com.nonsoft.ioc.IContainer;
 import com.nonsoft.persistence.hibernate3.HibernateDAOSupport;
 
 public class InitDataService implements Startable {
@@ -17,6 +17,9 @@ public class InitDataService implements Startable {
 
     @InjectComponent()
     private HibernateDAOSupport daoSupport;
+    
+    @InjectComponent()
+    IContainer container;
 
     @Transactional()
     public void start() {
@@ -24,19 +27,23 @@ public class InitDataService implements Startable {
             System.out.println(">>>> Initializing Data Begin <<<<");
             ForumEntity forum = new ForumEntity();
             forum.setTitle("Forum -1");
-            daoSupport.save(forum);
+            forum.setCreator("System");
+            forum.setCreationDate(new java.util.Date());
+            daoSupport.saveEntity(forum);
 
             TopicEntity topic = new TopicEntity();
+            topic.setCreator("System");
+            topic.setCreationDate(new java.util.Date());
             topic.setTitle("My first post!");
+            topic.setBody("body");
             topic.setForum(forum);
-            daoSupport.save(topic);
+            daoSupport.saveEntity(topic);
 
-            MessageEntity msg = new MessageEntity();
-            msg.setTitle("message - 1");
-            msg.setBody("First message");
-            msg.setTopic(topic);
-            daoSupport.save(msg);
-
+//            MessageEntity msg = new MessageEntity();
+//            msg.setTitle("My first post!");
+//            msg.setBody("First message");
+//            msg.setTopic(topic);
+//            daoSupport.save(msg);
         } catch (Exception e) {
             System.out.println("Error while initializing Data: " + e.getMessage());
         }

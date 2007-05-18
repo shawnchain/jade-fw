@@ -1,13 +1,27 @@
-##sample template
-Topics in Forum "${forum.title}"<br/>
------------------------------------------
-#foreach ($t in ${forum.listTopic()})
+<div id="main">
+<h1><a href="forumList.htm">Forum</a> - "${forum.title}"</h1>
+<table width="100%" class="listing" cellspacing="1" cellpading="2">
+  <tr>
+  <th>Topic</th>
+  <th>Creation Date</th>
+  <th>Modification Date</th>
+  <th>Author</th>
+  <th>Replies</th>
+  <th>Operations</th>
+  </tr>
+#foreach ($t in ${forum.listTopics()})
   <tr class="normal_tr" onMouseOver="this.className='hilight_tr'" onMouseOut="this.className='normal_tr'">
   <td><a href="topic.htm?id=${t.id}">$t.title</a></td>
-  <td>$t.creationDate</td>
-  <td>$t.modificationDate</td>
-  <td>$t.author</td>
-  <td>${t.countMessage()}</td>
+  <td>$!t.creationDate</td>
+  <td>$!t.modificationDate</td>
+  <td>$!t.creator</td>
+  <td>$t.countMessages()</td>
   <td><a href="topic_edit.htm?id=${t.id}">编辑</a></td>
   </tr>
 #end
+</table>
+<br/>
+<div>
+<a href="post.htm?forumId=${forum.id}">Post Topic</>
+</div>
+</div>

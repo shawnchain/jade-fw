@@ -24,6 +24,7 @@ package com.nonsoft.discuss.domain;
 import java.util.Date;
 
 import com.nonsoft.IUnknow;
+import com.nonsoft.bo.Entity;
 
 /**
  * <p>
@@ -42,6 +43,13 @@ public interface IContent extends IUnknow{
     public String getBody();
     public Date getCreationDate();
     public Date getModificationDate();
+    
+    
+    public Entity getEntity();
+    
+    public Entity save();
+    
+    public String getCreator();
     //public Long getAuthorId();
     //public 
 }

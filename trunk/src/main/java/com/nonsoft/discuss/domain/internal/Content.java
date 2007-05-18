@@ -23,9 +23,13 @@ package com.nonsoft.discuss.domain.internal;
 
 import java.util.Date;
 
+import com.nonsoft.annotation.InjectComponent;
 import com.nonsoft.bo.BusinessObject;
 import com.nonsoft.bo.Entity;
+import com.nonsoft.bo.IBusinessObject;
 import com.nonsoft.discuss.domain.IContent;
+import com.nonsoft.ioc.IContainer;
+import com.nonsoft.persistence.hibernate3.HibernateDAOSupport;
 
 /**
  * <p>
@@ -41,8 +45,33 @@ import com.nonsoft.discuss.domain.IContent;
  */
 
 public class Content extends BusinessObject implements IContent {
-
     private static final long serialVersionUID = -8408223892167394234L;
+    
+    private IContainer container;
+    
+    private HibernateDAOSupport daoSupport;
+
+    public HibernateDAOSupport getDaoSupport() {
+        return daoSupport;
+    }
+
+    @InjectComponent()
+    public void setDaoSupport(HibernateDAOSupport daoSupport) {
+        this.daoSupport = daoSupport;
+    }
+    
+    public IContainer getContainer() {
+        return container;
+    }
+
+    /**
+     * 
+     * @param container
+     */
+    @InjectComponent()
+    public void setContainer(IContainer container) {
+        this.container = container;
+    }    
 
     public Content(Entity entity) {
         super(entity);
@@ -67,5 +96,18 @@ public class Content extends BusinessObject implements IContent {
     public Long getId() {
         return getEntity().getId();
     }
+    
+    public String getCreator(){
+        return (String)getEntityProperty("creator");
+    }
 
+    public Entity save() {
+        Entity e = getEntity();
+        daoSupport.saveEntity(e);
+        return e;
+    }
+    
+    public IBusinessObject newDomainObject(Class domainType, Entity entity){
+        return (IBusinessObject)getContainer().getComponentInstance(domainType, new Class[]{Entity.class}, new Object[]{entity});
+    }
 }

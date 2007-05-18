@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<hibernate-mapping package="com.nonsoft.discuss.entity" default-lazy="false">
+<hibernate-mapping package="com.nonsoft.discuss.entity" default-lazy="true">
 	<class name="ForumEntity" table="forum">
 		<cache usage="read-write"/>
 		<id name="id">
@@ -8,9 +8,9 @@
 		</id>
 		<timestamp name="modificationDate" />
 		<property name="title" unique="true"/>
-		<property name="body" />
+		<property name="body" lazy="true"/>
 		<property name="tag" />
 		<property name="creationDate" />
-		<property name="authorId" />
+		<property name="creator" />
 	</class>
 </hibernate-mapping>

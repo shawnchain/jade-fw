@@ -1,9 +1,6 @@
 
 package com.nonsoft.discuss.page;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
 import com.nonsoft.annotation.InjectComponent;
 import com.nonsoft.annotation.Transactional;
 import com.nonsoft.discuss.service.ForumService;
@@ -14,14 +11,12 @@ public class ForumList extends Page {
     private ForumService forumService;
     
     @Transactional()
-    public void execute() throws Throwable {
-        //NOTE We also can pass the iterator into context directly, but 
-        // need the OpenSessionInView pattern.
-        ArrayList forums = new ArrayList();
-        for(Iterator i = forumService.listForums();i.hasNext();){
-            forums.add(i.next());
-        }
-        getContext().put("forums", forums);
+    public void render() throws Throwable {
+//        ArrayList<Object> forums = new ArrayList<Object>();
+//        for(Iterator i = forumService.listForums();i.hasNext();){
+//            forums.add(i.next());
+//        }
+        getContext().put("forums", forumService.listForums());
     }
 
 }

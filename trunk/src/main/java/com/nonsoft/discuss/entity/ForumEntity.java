@@ -47,15 +47,16 @@ public class ForumEntity extends Entity {
 
     java.util.Date modificationDate;
 
-    Long authorId;
+//    Long authorId;
+    String creator;
 
-    public Long getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(Long authorId) {
-        this.authorId = authorId;
-    }
+    // public Long getAuthorId() {
+    // return authorId;
+    // }
+    //
+    // public void setAuthorId(Long authorId) {
+    // this.authorId = authorId;
+    //    }
 
     public String getBody() {
         return body;
@@ -95,5 +96,13 @@ public class ForumEntity extends Entity {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
     }
 }

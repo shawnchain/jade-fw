@@ -4,12 +4,12 @@
 <web-app>
   <display-name>Discuss - A demo application of JADE Framework</display-name>
   <context-param>
-  	<param-name>db.name</param-name>
-  	<param-value>discuss</param-value>
+    <param-name>db.name</param-name>
+    <param-value>discuss</param-value>
   </context-param>
   <!--  Listener to startup hdqldb instance  -->
   <listener>
-  	<listener-class>hsqldb.ContextListener</listener-class>
+    <listener-class>hsqldb.ContextListener</listener-class>
   </listener>
   <!--  listener to bootup container -->
   <listener>
