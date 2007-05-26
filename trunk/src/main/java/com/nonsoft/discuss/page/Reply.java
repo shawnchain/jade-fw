@@ -71,7 +71,7 @@ public class Reply extends Page {
         
         topic.newReply(title, body,replyMessage);
         // Saved successfully, redirect to the forum page
-        return ActionTarget.redirect("topic.htm?id=" + topicId);
+        return ActionTarget.redirect("/topic.htm?id=" + topicId);
     }
     
     
