@@ -1,3 +1,3 @@
 <%
-response.sendRedirect("forum_list.htm");
+response.sendRedirect("forum.htm");
 %>

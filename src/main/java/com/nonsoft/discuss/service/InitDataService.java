@@ -26,7 +26,7 @@ public class InitDataService implements Startable {
         try {
             System.out.println(">>>> Initializing Data Begin <<<<");
             ForumEntity forum = new ForumEntity();
-            forum.setTitle("Forum -1");
+            forum.setTitle("Generic");
             forum.setCreator("System");
             forum.setCreationDate(new java.util.Date());
             daoSupport.saveEntity(forum);
@@ -34,8 +34,8 @@ public class InitDataService implements Startable {
             TopicEntity topic = new TopicEntity();
             topic.setCreator("System");
             topic.setCreationDate(new java.util.Date());
-            topic.setTitle("My first post!");
-            topic.setBody("body");
+            topic.setTitle("Welcome !");
+            topic.setBody("Welcome to our Discussion forum!<p/>This is a demo application of JADE Framework. You can get more details about the framework, from<a target=\"_blank\" href=\"http://code.google.com/p/jade-fw/\">http://code.google.com/p/jade-fw/</a>");
             topic.setForum(forum);
             daoSupport.saveEntity(topic);
 

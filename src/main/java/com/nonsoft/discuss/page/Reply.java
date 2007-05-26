@@ -8,6 +8,7 @@ import com.nonsoft.discuss.domain.ITopic;
 import com.nonsoft.discuss.service.ForumService;
 import com.nonsoft.web.action.ActionTarget;
 import com.nonsoft.web.controller.RuntimeData;
+import com.nonsoft.web.form.Field;
 import com.nonsoft.web.form.Form;
 import com.nonsoft.web.view.Page;
 
@@ -38,6 +39,12 @@ public class Reply extends Page {
         }else{
             getContext().put("reply", topic);   
         }
+        
+        // We need to setup the form title with default value, "Re: xxxx"
+        Form form = new Form("postForm");
+        form.addField(new Field("title","Re: " + topic.getTitle()));
+        // Just need to store in the context
+        getContext().put("form", form);
     }
 
     @Override

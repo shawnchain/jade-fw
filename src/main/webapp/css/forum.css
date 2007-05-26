@@ -1,367 +1,211 @@
-/**
- * Wiki text stylesheet definitions.
- * @author Matthias L. Jugel
- * @version $Id$
- */
-.bold {
-	font-weight: bold;
+/* General styles */
+.discussion table
+{
+  text-align: left;
 }
 
-.italic {
-	font-style: italic;
+/* Forum list */
+.forum-list tr >td
+{
+  margin: 0em !important;
+  padding: 0em !important;
+  height: 100%;
 }
 
-/************************************************/
-	/* image positioning                            */
-img {
-	padding-top: 2px;
-	padding-bottom: 1px;
-	padding-left: 1px;
-	padding-right: 1px;
+.forum-list tr > td > a
+{
+  display: block;
+  height: 100%;
+  padding: 0.5em;
+  margin: 0em !important;
+  border: none;
 }
 
-img.left {
-	display: block;
-	left: 0px;
+.forum-list td.id, .forum-list td.moderators, .forum-list td.lasttopic,
+.forum-list td.lastreply, .forum-list td.time, .forum-list td.topics,
+.forum-list td.replies
+{
+  text-align: center;
 }
 
-img.right {
-	display: block;
-	right: 0px;
+.forum-list td.id
+{
+  width: 1%;
 }
 
-img.center {
-	text-align: center;
+.forum-list .subject
+{
+  font-weight: bold;
 }
 
-img.float-left {
-	float: left;
-	margin-top: 3px;
-	margin-right: 3px;
-	margin-bottom: 3px;
+.forum-list th.group
+{
+  padding: 1em;
+  background-color: #eed;
+  border: 2px solid #d7d7d7;
 }
 
-img.float-right {
-	float: right;
-	margin-top: 3px;
-	margin-left: 3px;
-	margin-bottom: 3px;
+.forum-list th.group div.description
+{
+  font-weight: normal;
 }
 
-.heading-1 {
-	color: #003366;
-	background-color: inherit;
-	font-weight: bold;
-	font-size: 18px;
-	font-variant: small-caps;
+/* Topic list */
+.topic-list td.id, .topic-list td.author, .topic-list td.lastreply,
+.topic-list td.time, .topic-list td.replies
+{
+  text-align: center;
 }
 
-.heading-1-1 {
-	color: #003366;
-	background-color: inherit;
-	font-size: 13px;
-	font-variant: small-caps;
+.topic-list td.id
+{
+  width: 1%;
 }
 
-.quote {
-	font-style: italic;
-	color: inherit;
-	background-color: inherit;
-	font-family: inherit;
-	font-size: inherit;
+.topic-add form.add_form
+{
+  margin: 1em;
 }
 
-/************************************************/ /* code formatting */
-.code {
-	margin-top: 4px;
-	margin-bottom: 4px;
-	padding: 5px 5px 5px 5px;
-	color: inherit;
-	background-color: #eeeeee;
-	border: 1px dotted #003366;
-	font-family: courier, courier new, monospace;
-	font-size: 12px;
-	line-height: 100%;
-	white-space: pre;
-	width: 98%;
-	overflow: auto;
-	/* overflow: scroll -moz-scrollbars-horizontal;
-  overflow-x: auto; */
+/* Message list */
+.message-list div.topic
+{
+  margin: 2em;
+  margin-bottom: 0em;
+  border: 1px solid #d7d7d7;
 }
 
-.java-keyword {
-	font-weight: bold;
-	color: #0000aa;
-	background-color: inherit;
+.message-list div.topic.new
+{
+  border: 2px solid #b00;
 }
 
-.java-object {
-	color: #000088;
-	background-color: inherit;
+.message-list div.topic div.subject
+{
+  font-weight: bold;
+  margin: 0em;
+  padding: 0.25em 1em 0.25em 1em;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #d7d7d7;
 }
 
-.java-quote {
-	color: #00aa00;
-	background-color: inherit;
+.message-list div.topic > fieldset
+{
+  margin: 1em;
 }
 
-.xml-keyword {
-	font-weight: bold;
+.message-list div.topic div.body
+{
+  margin: 1em;
+  padding: 1em 1em;
 }
 
-.xml-tag {
-	color: #0000aa;
-	background-color: inherit;
+/* Message list reply tree */
+.message-list div.replies
+{
+  display: block;
+  margin: 2em;
+  margin-top: 0em;
+  padding: 0.25em;
+  border-right: 1px solid #d7d7d7;
+  border-left: 1px solid #d7d7d7;
+  border-bottom: 1px solid #d7d7d7;
 }
 
-.xml-quote {
-	color: #00aa00;
-	background-color: inherit;
+.message-list div.replies.new
+{
+  border-right: 2px solid #b00;
+  border-left: 2px solid #b00;
+  border-bottom: 2px solid #b00;
 }
 
-/* weblog formatting */
-.blog-date {
-	font-family: georgia, new roman, times, serif;
-	font-size: 16px;
-	color: #000000;
-	text-transform: none;
-	border-bottom: 1px solid #003366;
-	margin-bottom: 10px;
+.message-list div.replies ul.reply
+{
+  list-style: none;
+  padding: 0em 0em 0em 2em;
 }
 
-/* special formatting of a wiki table */
-.wiki-table {
-	empty-cells: show;
-	width: 100%;
-	max-width: 100%;
+.message-list div.replies ul.reply div.subject
+{
+  font-weight: bold;
 }
 
-.wiki-table td {
-	border-top: 1px solid #003366;
-	padding: 4px 4px 4px 4px;
-}
-
-.wiki-table th {
-	border-top: 1px solid #003366;
-	text-align: left;
-	color: inherit;
-	font-weight: bold;
-	/* background-color: #DDEEFF; */
-	color: #fff;
-	background-color: #001133;
-}
-
-.wiki-table .table-odd {
-	
-}
-
-.wiki-table .table-even {
-	
-}
-
-/************************************************/
-	/* list formatting                              */
-.list {
-	
-}
-
-.list-title {
-	font-weight: bold;
-}
-
-.list ul {
-	margin-top: 0px;
-	margin-bottom: 0px;
-	margin-left: 0px;
-	padding-left: 0px;
-	list-style-type: none;
-}
-
-/* wiki lists */
-ul.minus {
-	list-style-type: square;
-}
-
-ul.star {
-	list-style-type: circle;
-}
-
-ol.roman {
-	list-style-type: lower-roman;
-}
-
-ol.ROMAN {
-	list-style-type: upper-roman;
-}
-
-ol.alpha {
-	list-style-type: lower-alpha;
-}
-
-ol.ALPHA {
-	list-style-type: upper-alpha;
-}
-
-ol.greek {
-	list-style-type: lower-greek;
-}
-
-ol.GREEK {
-	list-style-type: upper-greek;
-}
-
-ol.hiragana {
-	list-style-type: hiragana;
-}
-
-ol.HIRAGANA {
-	list-style-type: hiragana-iroha;
-}
-
-ol.katakana {
-	list-style-type: katakana;
-}
 
-ol.KATAKANA {
-	list-style-type: katakana-iroha;
-}
-
-ol.HEBREW {
-	list-style-type: hebrew;
-}
-
-/************************************************/
-	/* index formatting                             */
-.index-top {
-	border-top: 1px solid #003366;
-	margin-bottom: 5px;
-}
-
-.index-top th {
-	padding: 1px 1px 1px 1px;
-	text-align: left;
-	font-weight: bold;
-}
-
-.index {
-	
-}
-
-.index td {
-	padding: 1px 1px 1px 1px;
-}
-
-.index th {
-	margin-top: 5px;
-	padding: 1px 1px 1px 1px;
-	text-align: left;
-	font-weight: bold;
-	border-top: 1px solid #003366;
-	border-bottom: 1px solid #003366;
-}
-
-/************************************************/
-	/* calendar display                             */
-.calendar {
-	border-spacing: 0px;
-}
-
-.calendar th {
-	font-size: 0.8em;
-}
-
-.calendar td {
-	text-align: right;
-}
-
-.calendar caption {
-	text-align: left;
-	font-weight: bold;
-}
-
-.calendar .today {
-	border: 3px solid #aaaaaa;
-}
-
-/* Styles for the page editing form */
-#edit #rows {
-	float: right;
-	font-size: 80%
-}
-
-#edit #rows select {
-	font-size: 90%
-}
-
-#edit #text {
-	clear: both;
-	width: 100%
-}
-
-#edit .wikitoolbar {
-	float: left;
-}
-
-#changeinfo {
-	padding: .5em
-}
-
-#changeinfo .field {
-	float: left;
-	margin: 0 1em .5em 0
-}
 
-#changeinfo br {
-	clear: left
+.message-list div.replies ul.reply > li
+{
+  margin: 0.25em;
+  padding: 0.25em;
 }
 
-#changeinfo .options {
-	padding: 0 0 1em 1em
+.message-list div.controls
+{
+  float: right;
+/*  padding: 0.5em; */
+  padding-right: 2.5em;
 }
 
-#changeinfo .options,#changeinfo .buttons {
-	clear: left
+.message-list div.controls a
+{
+  margin: 0.3em;
 }
 
-#delete {
-	margin-left: 6em
+.message-list div.footer
+{
+  /*font-weight: bold;*/
+  margin: 0em;
+  padding: 0.5em;
+  text-align: left;
 }
 
-#preview {
-	background: #f4f4f4 url(../draft.png);
-	margin: 1em 0 2em;
-	overflow: auto;
+.message-list div.replies div.footer
+{
+  /*font-weight: bold;*/
+  margin: 0em;
+  padding: 0.5em;
+  text-align: left;
+  margin-bottom: 1em;
 }
 
-/* Diff view */
-#overview .multi {
-	color: #999
+.message-list div.author, .message-list div.time
+{
+  display: inline;
+  padding: 0em 0.5em;
 }
 
-#overview .ipnr {
-	color: #999;
-	font-size: 80%
+.message-list div.id
+{
+  padding: 0.5em;
+  padding-right: 2.5em;
+  text-align: left;
 }
 
-#overview .comment {
-	padding: 1em 0 0
+.message-list div.replies div.body
+{
+  margin: 0em;
+  margin-right: 2em;
+  padding: 1em 1em;
+  border: 1px solid #d7d7d7;
+  background-color: #f7f7f7;
 }
 
-/* Styles for the page history table
-   (extends the styles for "table.listing") */
-#wikihist td {
-	padding: 0 .5em
+.message-list div.replies li.preview div.body
+{
+  border: 1px dashed #b00;
 }
 
-#wikihist td.date,#wikihist td.diff,#wikihist td.version,#wikihist td.author
-	{
-	white-space: nowrap;
+.message-list div.replies li.new div.body
+{
+  border: 2px solid #b00;
 }
 
-#wikihist td.version {
-	text-align: center
+.message-list div.set-display
+{
+  text-align: center;
+  margin: 1em;
 }
 
-#wikihist td.comment {
-	width: 100%
+.message-list div.set-display a
+{
+  margin: 0.5em;
 }
