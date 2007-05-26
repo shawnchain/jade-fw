@@ -1,6 +1,4 @@
 #labels Featured,Document
-#Run the sample application
-
 = Run the sample application =
 
 
@@ -33,5 +31,4 @@ That's it. If you still have problems, please post them to the discuss forum htt
 Enjoy!
 
 Shawn.
-
 
