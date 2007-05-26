@@ -35,7 +35,11 @@ public class InitDataService implements Startable {
             topic.setCreator("System");
             topic.setCreationDate(new java.util.Date());
             topic.setTitle("Welcome !");
-            topic.setBody("Welcome to our Discussion forum!<p/>This is a demo application of JADE Framework. You can get more details about the framework, from<a target=\"_blank\" href=\"http://code.google.com/p/jade-fw/\">http://code.google.com/p/jade-fw/</a>");
+            topic.setBody(
+                    "Welcome to the Discuss Forum, the demo application powered by JADE Framework!\n\n" +
+                    "JADE is a full-stack framework for Java application development, and now hosted at [http://code.google.com/p/jade-fw/ Google Code].\n\n" +
+                    "Enjoy!\n\n\n\n" +
+                    "-- Shawn --");
             topic.setForum(forum);
             daoSupport.saveEntity(topic);
 

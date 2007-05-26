@@ -28,6 +28,7 @@ import com.nonsoft.bo.BusinessObject;
 import com.nonsoft.bo.Entity;
 import com.nonsoft.bo.IBusinessObject;
 import com.nonsoft.discuss.domain.IContent;
+import com.nonsoft.discuss.filter.ApplyFilter;
 import com.nonsoft.ioc.IContainer;
 import com.nonsoft.persistence.hibernate3.HibernateDAOSupport;
 
@@ -77,6 +78,7 @@ public class Content extends BusinessObject implements IContent {
         super(entity);
     }
 
+    @ApplyFilter()
     public String getBody() {
         return (String)getEntityProperty("body");
     }
@@ -89,6 +91,7 @@ public class Content extends BusinessObject implements IContent {
         return (Date)getEntityProperty("modificationDate");
     }
 
+    @ApplyFilter()
     public String getTitle() {
         return (String)getEntityProperty("title");
     }
