@@ -97,6 +97,8 @@ public class Forum extends Content implements IForum {
         t.setTitle(title);
         t.setForum((ForumEntity) getEntity());
         t.setBody(body);
+        //FIXME read user info
+        t.setCreator("Anonymous");
 
         getDaoSupport().saveEntity(t);
         return (ITopic) newDomainObject(ITopic.class, t);
