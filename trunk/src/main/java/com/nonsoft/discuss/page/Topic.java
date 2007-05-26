@@ -22,7 +22,7 @@ public class Topic extends Page {
             throw new IllegalArgumentException("No topic id specified!");
         }
         ITopic topic = forumService.loadTopic(topicId);
-        
         getContext().put("topic", topic);
+        getContext().put("forum",topic.getForum());
     }
 }

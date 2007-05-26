@@ -1,7 +1,15 @@
 <div id="main">
-<h1><a href="forumList.htm">Forum</a> - "${forum.title}"</h1>
+<h1><a href="forumList.htm">Forum</a> #${forum.id} - Topic List</h1>
+<div class="name">
+  ${forum.title}
+</div>
+<div class="description">
+  $!{forum.description}
+</div>
 <table width="100%" class="listing" cellspacing="1" cellpading="2">
+	<thread>
   <tr>
+  	<th>ID</th>
   <th>Topic</th>
   <th>Creation Date</th>
   <th>Modification Date</th>
@@ -9,8 +17,10 @@
   <th>Replies</th>
   <th>Operations</th>
   </tr>
+  </thread>
 #foreach ($t in ${forum.listTopics()})
   <tr class="normal_tr" onMouseOver="this.className='hilight_tr'" onMouseOut="this.className='normal_tr'">
+  	<th>${t.id}</th>
   <td><a href="topic.htm?id=${t.id}">$t.title</a></td>
   <td>$!t.creationDate</td>
   <td>$!t.modificationDate</td>

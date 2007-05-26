@@ -24,7 +24,7 @@ public interface ITopic extends IContent{
      */
     public IMessage newReply(String title, String body);
     
-    public IMessage newReply(String title, String body, IMessage replyMessage);
+    public IMessage newReply(String title, String body, IMessage replyingMessage);
     
     public Integer countMessages();
 }

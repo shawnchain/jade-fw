@@ -1,7 +1,18 @@
-Reply to the message - ${reply.title}
+<div id="main">
+<h1>Reply to the message - ${reply.title}</h1>
+<div id="content" class="wiki">
 <form class="postForm" method="post" id="postForm">
-	Title: <input type="text" name="title" value="$!form.title.value"/>$!{form.title.errorMessage}<br/>
-	Body : <textarea name="body">$!form.body.value</textarea>$!{form.body.errorMessage}<br/>
+	<fieldset class="iefix">
+	<table>
+		<tr><td>Title:</td><td><input type="text" name="title" value="$!form.title.value" size="108"/>$!{form.title.errorMessage}</td></tr>
+		<tr><td>Body:</td><td><textarea name="body" class="wikitext" cols="80" rows="20">$!form.body.value</textarea>$!{form.body.errorMessage}<td/></tr>
+	</table>
 	<input type="hidden" name="form" value="postForm" />
-	<input type="submit" value="Post"/>
+	<div class="buttons">
+	<input type="submit" value="Submit"/><input type="button" value="Preview"/><input type="button" value="Cancel"/>
+	</div>
+	</fieldset>
 </form>
+</div>
+
+</div>

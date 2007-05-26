@@ -1,20 +1,52 @@
-
-Title : $!{topic.title}<br/>
-Body: $!{topic.body}<br/>
-<a href="reply.htm?tid=$!{topic.id}">Reply</a><br/>
------------------------------------------<br/>
-replies to this topic <br/>
------------------------------------------
-<table width="100%" class="list_table" cellspacing="1" cellpading="2">
-#foreach ($m in ${topic.listMessages()})
-  <tr class="normal_tr" onMouseOver="this.className='hilight_tr'" onMouseOut="this.className='normal_tr'">
-  <td>$m.title</td>
-  <td>$m.body</td>
-  <td>$m.author</td>
-  <td><a href="reply.htm?id=$!{m.id}&tid=$!{topic.id}">Reply</a></td>
-  </tr>
-#end
-</table>
-<br/>
----------------------------------------<br/>
+<!-- Topic Page -->
+<div id="content" class="discussion">
+	<div id="message-list" class="message-list">
+		<h1><a href="forum.htm?id=${forum.id}">Forum #${forum.id}</a> - Topic #${topic.id} - Message List</h1>
+		<div class="topic ">
+			<div class="header">
+				<div class="subject">${topic.title}</div>
+				<div class="body"><p>${topic.body}</p></div>
+			</div>
+			<div class="controls">
+				<a href="reply.htm?tid=$!{topic.id}">Reply</a>
+		        <a href="reply.htm?tid=$!{topic.id}&quote=true">Quote</a>
+		        <a href="edit.htm?tid=$!{topic.id}">Edit</a>
+		        <a href="delete.htm?id=$!{m.id}&tid=$!{topic.id}" onclick="alert('not supported');return confirm('Do you realy want to delete this reply and all its descendants?')">Delete</a>
+			</div>
+			<div class="footer">
+				by
+				<div class="author">${topic.creator}</div>
+				at
+				<div class="time">${topic.creationDate}</div>
+			</div>
+		</div>
+		<!-- by default we use flat view -->
+		<!-- in tree view, we need to use embedded ul element -->
+		<div class="replies ">
+			<ul class="reply">
+				#set( $count = 0 )
+				#foreach ($m in ${topic.listMessages()})
+					#set( $count = $count + 1 )
+				<li >
+					<a name="$count"></a>
+					<div class="controls">
+				        <a href="reply.htm?id=$!{m.id}&tid=$!{topic.id}">Reply</a>
+						<a href="reply.htm?id=$!{m.id}&tid=$!{topic.id}&quote=true">Quote</a>
+			            <a href="edit.htm?id=$!{m.id}&tid=$!{topic.id}">Edit</a>
+						<a href="delete.htm?id=$!{m.id}&tid=$!{topic.id}" onclick="alert('not supported');return confirm('Do you realy want to delete this reply and all its descendants?')">Delete</a>
+			      	</div>
+			      	<div class="subject">$count 楼  - ${m.title}</div>
+					<div class="body"><p>$m.body</p></div>
+			      	<div class="footer">
+			      		by
+						<div class="author">$m.creator</div>
+						at
+						<div class="time">$m.creationDate</div>
+					</div>
+			    </li>	
+			    #end
+			</ul>
+		</div>
+	</div>
+</div>
 <a href="forumList.htm">Back to Forum List</a>

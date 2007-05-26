@@ -65,15 +65,18 @@ public class Topic extends Content implements ITopic {
         return newReply(title,body,null);
     }
     
-    public IMessage newReply(String title, String body, IMessage replyMessage){
+    public IMessage newReply(String title, String body, IMessage replyingMessage){
         MessageEntity entity = new MessageEntity();
-        if(replyMessage != null){
-            entity.setParentMessage((MessageEntity)replyMessage.getEntity());   
+        if(replyingMessage != null){
+            entity.setParentMessage((MessageEntity)replyingMessage.getEntity());   
         }
         entity.setTopic((TopicEntity)getEntity());
         entity.setTitle(title);
         entity.setBody(body);
         entity.setCreationDate(new java.util.Date());
+        
+        //FIXME how to retrive the user info here ?
+        entity.setCreator("Anonymous");
         getDaoSupport().saveEntity(entity);
         return (IMessage)newDomainObject(IMessage.class, entity);
     }

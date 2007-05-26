@@ -90,7 +90,7 @@
 			</build>
 		</profile>
 	</profiles>
-	
+
 	<repositories>
 		<!-- JADE release/snapshot repository -->
 		<repository>
@@ -186,4 +186,23 @@
 			</testResource>
 		</testResources>
 	</build>
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>taglist-maven-plugin</artifactId>
+				<configuration>
+					<tags>
+						<tag>TODO</tag>
+						<tag>FIXME</tag>
+						<tag>@todo</tag>
+						<tag>@deprecated</tag>
+						<tag>NOTE</tag>
+					</tags>
+					<encoding>UTF-8</encoding>
+				</configuration>
+				<version>2.1-SNAPSHOT</version>
+			</plugin>
+		</plugins>
+	</reporting>
 </project>
