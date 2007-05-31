@@ -6,8 +6,9 @@ import com.nonsoft.annotation.InjectComponent;
 import com.nonsoft.annotation.Transactional;
 import com.nonsoft.discuss.entity.ForumEntity;
 import com.nonsoft.discuss.entity.TopicEntity;
+import com.nonsoft.discuss.entity.UserEntity;
 import com.nonsoft.ioc.IContainer;
-import com.nonsoft.persistence.hibernate3.HibernateDAOSupport;
+import com.nonsoft.persistence.IDAO;
 
 public class InitDataService implements Startable {
     // FIXME remove me in production mode
@@ -16,8 +17,8 @@ public class InitDataService implements Startable {
     }
 
     @InjectComponent()
-    private HibernateDAOSupport daoSupport;
-    
+    private IDAO daoSupport;
+
     @InjectComponent()
     IContainer container;
 
@@ -37,17 +38,23 @@ public class InitDataService implements Startable {
             topic.setTitle("Welcome !");
             topic.setBody(
                     "Welcome to the Discuss Forum, the demo application powered by JADE Framework!\n\n" +
-                    "JADE is a full-stack framework for Java application development, and now hosted at [http://code.google.com/p/jade-fw/ Google Code].\n\n" +
-                    "Enjoy!\n\n\n\n" +
-                    "-- Shawn --");
+                    "JADE is a full-stack framework for Java application development, and now hosted at " +
+                    "http://code.google.com/p/jade-fw/\n\n" +
+                    "Enjoy!\n\n" +
+                    "~~ ''Shawn'' ~~");
             topic.setForum(forum);
             daoSupport.saveEntity(topic);
 
-//            MessageEntity msg = new MessageEntity();
-//            msg.setTitle("My first post!");
-//            msg.setBody("First message");
-//            msg.setTopic(topic);
-//            daoSupport.save(msg);
+            UserEntity user = new UserEntity();
+            user.setName("admin");
+            user.setEmail("admin@localhost");
+            user.setCreationDate(new java.util.Date());
+            daoSupport.saveEntity(user);
+            // MessageEntity msg = new MessageEntity();
+            // msg.setTitle("My first post!");
+            // msg.setBody("First message");
+            // msg.setTopic(topic);
+            // daoSupport.save(msg);
         } catch (Exception e) {
             System.out.println("Error while initializing Data: " + e.getMessage());
         }

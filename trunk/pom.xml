@@ -22,6 +22,12 @@
 			<type>jar</type>
 		</dependency>
 		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.13</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
 			<groupId>com.nonsoft.jade</groupId>
 			<artifactId>jade-bootstrap</artifactId>
 			<version>1.1-SNAPSHOT</version>
@@ -57,6 +63,11 @@
 			<artifactId>commons-lang</artifactId>
 			<version>2.2</version>
 			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>radeox</groupId>
+			<artifactId>radeox</artifactId>
+			<version>1.0-b2</version>
 		</dependency>
 	</dependencies>
 
@@ -150,6 +161,18 @@
 					</connectors>
 				</configuration>
 			</plugin>
+			<!--
+			<plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<configuration>
+				<container>
+					<containerId>jetty5x</containerId>
+					<type>embedded</type>
+				</container>
+				</configuration>
+			</plugin>
+			-->
 		</plugins>
 		<resources>
 			<resource>
@@ -170,6 +193,7 @@
 					<include>**/*.vm</include>
 					<include>**/*.xml</include>
 					<include>**/*.fmt</include>
+					<include>**/org.radeox.*</include>
 				</includes>
 			</resource>
 		</resources>

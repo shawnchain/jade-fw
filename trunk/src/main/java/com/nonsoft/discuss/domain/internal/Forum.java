@@ -32,6 +32,7 @@ import com.nonsoft.discuss.domain.ITopic;
 import com.nonsoft.discuss.entity.ForumEntity;
 import com.nonsoft.discuss.entity.TopicEntity;
 import com.nonsoft.persistence.hibernate3.HibernateOperation;
+import com.nonsoft.persistence.hibernate3.HibernateOperations;
 
 /**
  * <p>
@@ -55,7 +56,7 @@ public class Forum extends Content implements IForum {
 
     @ConvertResult(from = com.nonsoft.bo.Entity.class, to = com.nonsoft.discuss.domain.ITopic.class)
     public Iterator listTopics() {
-        return getDaoSupport().iterate("from TopicEntity t where t.forum.id=" + getId());
+        return (Iterator) getDaoSupport().execute(HibernateOperations.iterate("from TopicEntity t where t.forum.id=" + getId()));
     }
 
     public Integer countMessages() {

@@ -1,4 +1,4 @@
-package com.nonsoft.discuss.core.internal;
+package com.nonsoft.discuss.domain.internal;
 
 import java.util.Date;
 

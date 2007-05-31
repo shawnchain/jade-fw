@@ -1,5 +1,5 @@
 //==============================================================================
-// Created on 2007-5-3
+// Created on 2007-5-31
 // $Id$
 //==============================================================================
 //  Copyright (C) <2006,2007>  Shawn Qian, shawn.chain@gmail.com
@@ -21,12 +21,8 @@
 
 package com.nonsoft.discuss.domain.internal;
 
-import java.util.Date;
-
 import com.nonsoft.bo.Entity;
-import com.nonsoft.bo.IBusinessObject;
-import com.nonsoft.discuss.domain.IContent;
-import com.nonsoft.discuss.filter.ApplyFilter;
+import com.nonsoft.discuss.domain.IUser;
 
 /**
  * <p>
@@ -36,53 +32,39 @@ import com.nonsoft.discuss.filter.ApplyFilter;
  * Copyright: Copyright (c) 2003-2006 NonSoft.com
  * </p>
  * 
- * @author Shawn Qian(shawn.chain@gmail.com)
+ * @author Shawn Qian
  * @version 2.0, $Id$
  * @since
  */
 
-public class Content extends DiscussBusinessObject implements IContent {
-    private static final long serialVersionUID = -8408223892167394234L;
-    
-    public Content(Entity entity) {
+public class User extends DiscussBusinessObject implements IUser {
+    public User(Entity entity) {
         super(entity);
     }
 
-    @ApplyFilter()
-    public String getBody() {
-        return (String)getEntityProperty("body");
-    }
-
-    public Date getCreationDate() {
-        return (Date)getEntityProperty("creationDate");
-    }
-
-    public Date getModificationDate() {
-        return (Date)getEntityProperty("modificationDate");
-    }
-
-    @ApplyFilter()
-    public String getTitle() {
-        return (String)getEntityProperty("title");
-    }
+    private static final long serialVersionUID = 1L;
 
     public Long getId() {
-        return getEntity().getId();
-    }
-    
-    public String getCreator(){
-        return (String)getEntityProperty("creator");
-    }
-
-    public IBusinessObject newDomainObject(Class domainType, Entity entity){
-        return (IBusinessObject)getContainer().getComponentInstance(domainType, new Class[]{Entity.class}, new Object[]{entity});
+        Entity e = getEntity();
+        if (e != null) {
+            return e.getId();
+        }
+        return null;
     }
 
-    public void setBody(String body) {
-        setEntityProperty("body", String.class, body);
+    public String getName() {
+        return (String) this.getEntityProperty("name");
     }
 
-    public void setTitle(String title) {
-        setEntityProperty("title", String.class, title);
+    public String getEmail() {
+        return (String) this.getEntityProperty("email");
     }
+
+    /**
+     * Here we'll use email as the user identification
+     */
+    public String getIdentification() {
+        return (String) this.getEntityProperty("email");
+    }
+
 }

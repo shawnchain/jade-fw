@@ -88,6 +88,11 @@ public class ContentInterceptorTest extends WebTestCase {
             return null;
         }
 
+        public void setTitle(String title) {
+            // TODO Auto-generated method stub
+            
+        }
+
     }
 
 }
