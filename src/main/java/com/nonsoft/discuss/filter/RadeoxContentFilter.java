@@ -1,5 +1,5 @@
 //==============================================================================
-// Created on 2007-5-3
+// Created on 2007-5-27
 // $Id$
 //==============================================================================
 //  Copyright (C) <2006,2007>  Shawn Qian, shawn.chain@gmail.com
@@ -19,41 +19,47 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //==============================================================================
 
-package com.nonsoft.discuss.domain;
+package com.nonsoft.discuss.filter;
 
-import java.util.Date;
+import java.util.Locale;
 
-import com.nonsoft.IUnknow;
-import com.nonsoft.bo.Entity;
+import org.radeox.api.engine.RenderEngine;
+import org.radeox.api.engine.context.InitialRenderContext;
+import org.radeox.api.engine.context.RenderContext;
+import org.radeox.engine.BaseRenderEngine;
+import org.radeox.engine.context.BaseInitialRenderContext;
+import org.radeox.engine.context.BaseRenderContext;
 
 /**
  * <p>
+ * Content filter that using radeox
  * </p>
  * 
- * <p>Copyright: Copyright (c) 2003-2006 NonSoft.com</p>
+ * <p>
+ * Copyright: Copyright (c) 2003-2006 NonSoft.com
+ * </p>
  * 
- * @author Shawn Qian(shawn.chain@gmail.com)
+ * @author Shawn Qian
  * @version 2.0, $Id$
  * @since
  */
 
-public interface IContent extends IUnknow{
-    public Long getId();
-    public String getTitle();
-    public String getBody();
-    public Date getCreationDate();
-    public Date getModificationDate();
-    
-    
-    public Entity getEntity();
-    
-    public Entity save();
-    
-    public String getCreator();
-    
-    
-    public void setTitle(String title);
-    public void setBody(String body);
-    //public Long getAuthorId();
-    //public 
+public class RadeoxContentFilter implements IContentFilter {
+    private RenderEngine engine;
+
+    public RadeoxContentFilter() {
+        init();
+    }
+
+    public void init() {
+        InitialRenderContext initialContext = new BaseInitialRenderContext();
+        initialContext.set(RenderContext.INPUT_LOCALE, new Locale("moin", ""));
+        engine = new BaseRenderEngine(initialContext);
+        //engine = new BaseRenderEngine();
+    }
+
+    public String apply(String input) {
+        RenderContext context = new BaseRenderContext();
+        return engine.render(input, context);
+    }
 }

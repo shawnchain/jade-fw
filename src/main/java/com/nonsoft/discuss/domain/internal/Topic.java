@@ -30,6 +30,7 @@ import com.nonsoft.discuss.domain.IMessage;
 import com.nonsoft.discuss.domain.ITopic;
 import com.nonsoft.discuss.entity.MessageEntity;
 import com.nonsoft.discuss.entity.TopicEntity;
+import com.nonsoft.persistence.hibernate3.HibernateOperations;
 
 /**
  * <p>
@@ -47,41 +48,46 @@ import com.nonsoft.discuss.entity.TopicEntity;
 public class Topic extends Content implements ITopic {
 
     private static final long serialVersionUID = -205385204308011458L;
-    
+
     public Topic(Entity entity) {
         super(entity);
     }
 
     public IForum getForum() {
-        return (IForum)newDomainObject(IForum.class, ((TopicEntity) getEntity()).getForum());
+        return (IForum) newDomainObject(IForum.class, ((TopicEntity) getEntity()).getForum());
     }
 
-    @ConvertResult(from=com.nonsoft.bo.Entity.class, to=com.nonsoft.discuss.domain.IMessage.class)
+    @ConvertResult(from = com.nonsoft.bo.Entity.class, to = com.nonsoft.discuss.domain.IMessage.class)
     public Iterator listMessages() {
-        return getDaoSupport().iterate("from MessageEntity m where m.topic.id=" + getId());
+        return (Iterator) getDaoSupport().execute(
+                HibernateOperations.iterate("from MessageEntity m where m.topic.id=" + getId()));
     }
-    
+
     public IMessage newReply(String title, String body) {
-        return newReply(title,body,null);
+        return newReply(title, body, null);
     }
-    
-    public IMessage newReply(String title, String body, IMessage replyingMessage){
+
+    public IMessage newReply(String title, String body, IMessage replyingMessage) {
         MessageEntity entity = new MessageEntity();
-        if(replyingMessage != null){
-            entity.setParentMessage((MessageEntity)replyingMessage.getEntity());   
+        if (replyingMessage != null) {
+            entity.setParentMessage((MessageEntity) replyingMessage.getEntity());
         }
-        entity.setTopic((TopicEntity)getEntity());
+        entity.setTopic((TopicEntity) getEntity());
         entity.setTitle(title);
         entity.setBody(body);
         entity.setCreationDate(new java.util.Date());
-        
-        //FIXME how to retrive the user info here ?
+
+        // FIXME how to retrive the user info here ?
         entity.setCreator("Anonymous");
         getDaoSupport().saveEntity(entity);
-        return (IMessage)newDomainObject(IMessage.class, entity);
+        return (IMessage) newDomainObject(IMessage.class, entity);
     }
 
     public Integer countMessages() {
-        return (Integer)getDaoSupport().iterate("select count(*) from MessageEntity m where m.topic.id=" + getId()).next();
-    } 
+        Iterator iter = (Iterator) getDaoSupport().execute(
+                HibernateOperations.iterate("select count(*) from MessageEntity m where m.topic.id=" + getId()));
+        return (Integer) iter.next();
+        // return (Integer)getDaoSupport().iterate("select count(*) from MessageEntity m where m.topic.id=" +
+        // getId()).next();
+    }
 }

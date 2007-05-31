@@ -1,5 +1,5 @@
 <div id="main">
-<h1>Reply to the message - ${reply.title}</h1>
+<h1>Edit the topic/message - ${edit.title}</h1>
 <div id="content" class="wiki">
 <form class="postForm" method="post" id="postForm">
 	<fieldset class="iefix">
@@ -8,7 +8,7 @@
 		<tr><td>Body:</td><td><textarea name="body" class="wikitext" cols="80" rows="20">$!form.body.value</textarea>$!{form.body.errorMessage}<td/></tr>
 	</table>
 	<input type="hidden" name="form" value="postForm" />
-	<input type="hidden" name="event"/>
+	<input type="hidden" name="event" />
 	<div class="buttons">
 	<input type="submit" value="Submit"/><input type="button" value="Preview"/><input type="button" value="Cancel" onclick="postForm.event.value='cancel';postForm.submit()"/>
 	</div>

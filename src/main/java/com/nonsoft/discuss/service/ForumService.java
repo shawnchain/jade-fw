@@ -53,7 +53,6 @@ public class ForumService {
         if (entity == null) {
             return null;
         }
-        entity.getId();
         return (ITopic) container.getComponentInstance(ITopic.class, new Class[] { Entity.class },
                 new Object[] { entity });
     }
@@ -63,7 +62,6 @@ public class ForumService {
         if (entity == null) {
             return null;
         }
-        entity.getId();
         return (IMessage) container.getComponentInstance(IMessage.class, new Class[] { Entity.class },
                 new Object[] { entity });
     }

@@ -17,7 +17,7 @@
 				by
 				<div class="author">${topic.creator}</div>
 				at
-				<div class="time">${topic.creationDate}</div>
+				<div class="time">${topic.modificationDate}</div>
 			</div>
 		</div>
 		<!-- by default we use flat view -->
@@ -41,7 +41,7 @@
 			      		by
 						<div class="author">$m.creator</div>
 						at
-						<div class="time">$m.creationDate</div>
+						<div class="time">$m.modificationDate</div>
 					</div>
 			    </li>	
 			    #end
