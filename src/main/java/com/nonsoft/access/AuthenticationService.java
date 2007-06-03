@@ -34,12 +34,13 @@ package com.nonsoft.access;
 
 public interface AuthenticationService {
     /**
-     * 
+     *
      * @param username
      * @param password
      * @return
+     * //TODO Exception and auth hint support
      */
-    public boolean authenticate(String username, String password);
+    public void authenticate(String username, String password) throws AuthException;
     
     /**
      * 
