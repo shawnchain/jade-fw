@@ -47,7 +47,7 @@ public class InitDataService implements Startable {
 
             UserEntity user = new UserEntity();
             user.setName("admin");
-            user.setEmail("admin@localhost");
+            user.setEmail("admin");
             user.setCreationDate(new java.util.Date());
             daoSupport.saveEntity(user);
             // MessageEntity msg = new MessageEntity();

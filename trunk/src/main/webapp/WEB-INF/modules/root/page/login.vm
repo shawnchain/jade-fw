@@ -1,0 +1,29 @@
+<div id="main">
+<h1>Login</h1>
+<div id="content" class="login">
+	#if($error)
+	<div class="system-message">
+		<h2>Error</h2>
+		<p>${error}</p>
+	</div>
+	#end
+<form method="post">
+  <div>
+   <label for="username">Username:</label>
+   <input type="text" id="username" name="username" class="textwidget" size="20" value="$!form.username.inputValue" />$!{form.username.errorMessage}
+  </div>
+  <div>
+   <label for="password">Password:</label>
+   <input type="password" id="password" name="password" class="textwidget" size="20" />$!{form.password.errorMessage}
+  </div>
+  <input type="hidden" name="form" value="loginForm" />
+  <!--
+  <input type="hidden" name="referer" value="http://ip:port/foo/bar" />
+  -->
+  <input type="submit" value="Login" />
+  
+  <p><a href="reset_password.htm">Forgot your password?</a></p>
+ </form>
+</div>
+
+</div>

@@ -33,8 +33,14 @@ package com.nonsoft.access;
  */
 
 public class FileAuthenticationService implements AuthenticationService{
-    public boolean authenticate(String username, String password) {
-        return username.equals(password);
+    public void authenticate(String username, String password) throws AuthException{
+        if("lost".equals(username)){
+            throw new AuthException("No such user: " + username);
+        }
+        
+        if(!username.equals(password)){
+            throw new AuthException("Password not match!");
+        }
         //return false;
     }
 

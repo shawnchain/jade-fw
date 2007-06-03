@@ -11,5 +11,11 @@
 			<field property="body" depends="required">
 			</field>
 		</form>
+		<form name="loginForm">
+			<field property="username" depends="required">
+			</field>
+			<field property="password" depends="required">
+			</field>
+		</form>
 	</formset>
 </form-validation>
