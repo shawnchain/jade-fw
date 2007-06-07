@@ -49,5 +49,6 @@ public interface AuthenticationService {
      * @param newPassword
      * @return
      */
-    public boolean changePassword(String username, String oldPassword, String newPassword);
+    public boolean changePassword(String username, String oldPassword, String newPassword) throws AuthException;
+    
 }

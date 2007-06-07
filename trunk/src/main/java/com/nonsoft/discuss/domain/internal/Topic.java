@@ -24,12 +24,12 @@ package com.nonsoft.discuss.domain.internal;
 import java.util.Iterator;
 
 import com.nonsoft.annotation.ConvertResult;
-import com.nonsoft.bo.Entity;
 import com.nonsoft.discuss.domain.IForum;
 import com.nonsoft.discuss.domain.IMessage;
 import com.nonsoft.discuss.domain.ITopic;
 import com.nonsoft.discuss.entity.MessageEntity;
 import com.nonsoft.discuss.entity.TopicEntity;
+import com.nonsoft.domain.Entity;
 import com.nonsoft.persistence.hibernate3.HibernateOperations;
 
 /**
@@ -57,9 +57,9 @@ public class Topic extends Content implements ITopic {
         return (IForum) newDomainObject(IForum.class, ((TopicEntity) getEntity()).getForum());
     }
 
-    @ConvertResult(from = com.nonsoft.bo.Entity.class, to = com.nonsoft.discuss.domain.IMessage.class)
+    @ConvertResult(from = com.nonsoft.domain.Entity.class, to = com.nonsoft.discuss.domain.IMessage.class)
     public Iterator listMessages() {
-        return (Iterator) getDaoSupport().execute(
+        return (Iterator) getDAO().execute(
                 HibernateOperations.iterate("from MessageEntity m where m.topic.id=" + getId()));
     }
 
@@ -79,12 +79,12 @@ public class Topic extends Content implements ITopic {
 
         // FIXME how to retrive the user info here ?
         entity.setCreator("Anonymous");
-        getDaoSupport().saveEntity(entity);
+        getDAO().saveEntity(entity);
         return (IMessage) newDomainObject(IMessage.class, entity);
     }
 
     public Integer countMessages() {
-        Iterator iter = (Iterator) getDaoSupport().execute(
+        Iterator iter = (Iterator) getDAO().execute(
                 HibernateOperations.iterate("select count(*) from MessageEntity m where m.topic.id=" + getId()));
         return (Integer) iter.next();
         // return (Integer)getDaoSupport().iterate("select count(*) from MessageEntity m where m.topic.id=" +

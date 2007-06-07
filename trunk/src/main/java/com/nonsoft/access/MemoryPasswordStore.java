@@ -1,5 +1,5 @@
 //==============================================================================
-// Created on 2007-5-31
+// Created on 2007-6-6
 // $Id$
 //==============================================================================
 //  Copyright (C) <2006,2007>  Shawn Qian, shawn.chain@gmail.com
@@ -19,39 +19,41 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //==============================================================================
 
-package com.nonsoft.discuss.domain;
+package com.nonsoft.access;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <p>
  * </p>
  * 
- * <p>Copyright: Copyright (c) 2003-2006 NonSoft.com</p>
+ * <p>
+ * Copyright: Copyright (c) 2003-2006 NonSoft.com
+ * </p>
  * 
  * @author Shawn Qian
  * @version 2.0, $Id$
  * @since
  */
 
-public interface IUser {
-    /**
-     * 
-     * @return
-     */
-    public Long getId();
-    /**
-     * 
-     * @return
-     */
-    public String getName();
-    /**
-     * 
-     * @return
-     */
-    public String getEmail();
+public class MemoryPasswordStore implements IPasswordStore{
+    private HashMap passwords = new HashMap<String,String>();
+    public MemoryPasswordStore(){}
+    public MemoryPasswordStore(Map passwords){
+        passwords.putAll(passwords);
+    }
+    public String getPassword(String username) {
+        return (String)passwords.get(username);
+    }
+
+    public void updatePassword(String username, String password) {
+        if(passwords.containsKey(username)){
+            passwords.put(username, password);
+        }
+    }
     
-    /**
-     * 
-     * @return
-     */
-    public String getIdentification();
+    public void addPassword(String username, String password){
+        passwords.put(username, password);
+    }
 }

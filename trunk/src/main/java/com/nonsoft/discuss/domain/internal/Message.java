@@ -3,10 +3,10 @@ package com.nonsoft.discuss.domain.internal;
 import java.util.Iterator;
 
 import com.nonsoft.annotation.ConvertResult;
-import com.nonsoft.bo.Entity;
 import com.nonsoft.discuss.domain.IMessage;
 import com.nonsoft.discuss.domain.ITopic;
 import com.nonsoft.discuss.entity.MessageEntity;
+import com.nonsoft.domain.Entity;
 import com.nonsoft.persistence.hibernate3.HibernateOperations;
 
 public class Message extends Content implements IMessage {
@@ -20,9 +20,9 @@ public class Message extends Content implements IMessage {
         return new Message(((MessageEntity) getEntity()).getParentMessage());
     }
 
-    @ConvertResult(from = com.nonsoft.bo.Entity.class, to = com.nonsoft.discuss.domain.IMessage.class)
+    @ConvertResult(from = com.nonsoft.domain.Entity.class, to = com.nonsoft.discuss.domain.IMessage.class)
     public Iterator listChildrenMessages() {
-        return (Iterator) getDaoSupport().execute(
+        return (Iterator) getDAO().execute(
                 HibernateOperations.iterate("from MessageEntity m where m.parentMessage.id=" + getId()));
     }
 

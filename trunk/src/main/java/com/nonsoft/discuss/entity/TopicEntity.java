@@ -21,7 +21,7 @@
 
 package com.nonsoft.discuss.entity;
 
-import com.nonsoft.bo.Entity;
+import com.nonsoft.domain.Entity;
 
 /**
  * <p>

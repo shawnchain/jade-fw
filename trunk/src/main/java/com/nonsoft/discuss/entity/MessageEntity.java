@@ -2,7 +2,7 @@ package com.nonsoft.discuss.entity;
 
 import java.util.Set;
 
-import com.nonsoft.bo.Entity;
+import com.nonsoft.domain.Entity;
 
 public class MessageEntity extends Entity {
     String title;

@@ -4,8 +4,8 @@ import java.util.Date;
 
 import test.WebTestCase;
 
-import com.nonsoft.bo.Entity;
 import com.nonsoft.discuss.domain.IContent;
+import com.nonsoft.domain.Entity;
 import com.nonsoft.ioc.internal.defaults.DefaultCoreContainer;
 import com.nonsoft.ioc.internal.util.AspectBuilder;
 import com.nonsoft.ioc.internal.util.ComponentAdapterBuilder;
@@ -21,9 +21,9 @@ public class ContentInterceptorTest extends WebTestCase {
         FooContent content = (FooContent)c.getComponentInstance(FooContent.class);
         assertNotNull(content);
         assertEquals("FOO", content.getTitle());
-        assertEquals("BAR, by Shawn Chain", content.getBody());
+        assertEquals("BAR, by __author__", content.getBody());
         content.setBody("Changed");
-        assertEquals("BAR, by Shawn Chain", content.getBody());
+        assertEquals("BAR, by __author__", content.getBody());
         content.modificationDate = new java.util.Date();
         assertEquals("Changed", content.getBody());
         //System.out.println(content.getBody());
@@ -78,9 +78,9 @@ public class ContentInterceptorTest extends WebTestCase {
             return title;
         }
 
-        public Entity save() {
+        public void save() {
             // TODO Auto-generated method stub
-            return null;
+            return ;
         }
 
         public Object queryInterface(Class type) {

@@ -1,10 +1,12 @@
 <html>
   <body>
-  $!{authHelper.authToken}<br/>
+ <br/>
   #if (${authHelper.authToken})
-  	User logged in!
+  	User logged in! - $!{user.name}/ $!{authHelper.authToken}
   #else
   	User not logged in!
   #end
+  <p/>
+  Found group: $group.name
   </body>
 </html>
