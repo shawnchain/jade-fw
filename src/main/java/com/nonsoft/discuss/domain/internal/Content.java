@@ -23,10 +23,10 @@ package com.nonsoft.discuss.domain.internal;
 
 import java.util.Date;
 
-import com.nonsoft.bo.Entity;
-import com.nonsoft.bo.IBusinessObject;
 import com.nonsoft.discuss.domain.IContent;
 import com.nonsoft.discuss.filter.ApplyFilter;
+import com.nonsoft.domain.DomainObject;
+import com.nonsoft.domain.Entity;
 
 /**
  * <p>
@@ -41,7 +41,7 @@ import com.nonsoft.discuss.filter.ApplyFilter;
  * @since
  */
 
-public class Content extends DiscussBusinessObject implements IContent {
+public class Content extends DiscussDomainObject implements IContent {
     private static final long serialVersionUID = -8408223892167394234L;
     
     public Content(Entity entity) {
@@ -74,8 +74,8 @@ public class Content extends DiscussBusinessObject implements IContent {
         return (String)getEntityProperty("creator");
     }
 
-    public IBusinessObject newDomainObject(Class domainType, Entity entity){
-        return (IBusinessObject)getContainer().getComponentInstance(domainType, new Class[]{Entity.class}, new Object[]{entity});
+    public DomainObject newDomainObject(Class domainType, Entity entity){
+        return (DomainObject)getContainer().getComponentInstance(domainType, new Class[]{Entity.class}, new Object[]{entity});
     }
 
     public void setBody(String body) {

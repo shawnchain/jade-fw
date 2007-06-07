@@ -19,10 +19,10 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //==============================================================================
 
-package com.nonsoft.discuss.domain.internal;
+package com.nonsoft.discuss.domain;
 
-import com.nonsoft.bo.Entity;
-import com.nonsoft.discuss.domain.IUser;
+import com.nonsoft.discuss.domain.internal.DiscussDomainObject;
+import com.nonsoft.domain.Entity;
 
 /**
  * <p>
@@ -37,7 +37,7 @@ import com.nonsoft.discuss.domain.IUser;
  * @since
  */
 
-public class User extends DiscussBusinessObject implements IUser {
+public class User extends DiscussDomainObject{
     public User(Entity entity) {
         super(entity);
     }

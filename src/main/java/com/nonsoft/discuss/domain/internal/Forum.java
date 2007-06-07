@@ -26,11 +26,11 @@ import java.util.Iterator;
 import org.hibernate.Session;
 
 import com.nonsoft.annotation.ConvertResult;
-import com.nonsoft.bo.Entity;
 import com.nonsoft.discuss.domain.IForum;
 import com.nonsoft.discuss.domain.ITopic;
 import com.nonsoft.discuss.entity.ForumEntity;
 import com.nonsoft.discuss.entity.TopicEntity;
+import com.nonsoft.domain.Entity;
 import com.nonsoft.persistence.hibernate3.HibernateOperation;
 import com.nonsoft.persistence.hibernate3.HibernateOperations;
 
@@ -54,14 +54,14 @@ public class Forum extends Content implements IForum {
         super(entity);
     }
 
-    @ConvertResult(from = com.nonsoft.bo.Entity.class, to = com.nonsoft.discuss.domain.ITopic.class)
+    @ConvertResult(from = com.nonsoft.domain.Entity.class, to = com.nonsoft.discuss.domain.ITopic.class)
     public Iterator listTopics() {
-        return (Iterator) getDaoSupport().execute(HibernateOperations.iterate("from TopicEntity t where t.forum.id=" + getId()));
+        return (Iterator) getDAO().execute(HibernateOperations.iterate("from TopicEntity t where t.forum.id=" + getId()));
     }
 
     public Integer countMessages() {
         return new Integer(countTopics().intValue() + 
-         ((Integer) getDaoSupport().execute(new HibernateOperation() {
+         ((Integer) getDAO().execute(new HibernateOperation() {
             @Override
             public Object body(Session session) throws Exception {
                 // FIXME use a dedicated field to store the total topics/messages count. But need the message/event
@@ -78,7 +78,7 @@ public class Forum extends Content implements IForum {
     }
 
     public Integer countTopics() {
-        return (Integer) getDaoSupport().execute(new HibernateOperation() {
+        return (Integer) getDAO().execute(new HibernateOperation() {
             @Override
             public Object body(Session session) throws Exception {
                 return session.createQuery("select count(t.id) from TopicEntity t where t.forum.id=" + getId())
@@ -101,7 +101,7 @@ public class Forum extends Content implements IForum {
         //FIXME read user info
         t.setCreator("Anonymous");
 
-        getDaoSupport().saveEntity(t);
+        getDAO().saveEntity(t);
         return (ITopic) newDomainObject(ITopic.class, t);
     }
 }

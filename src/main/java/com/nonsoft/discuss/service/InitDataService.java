@@ -50,6 +50,10 @@ public class InitDataService implements Startable {
             user.setEmail("admin");
             user.setCreationDate(new java.util.Date());
             daoSupport.saveEntity(user);
+            
+//            GroupEntity group = new GroupEntity();
+//            group.setName("Forum Admin");
+//            daoSupport.saveEntity(group);
             // MessageEntity msg = new MessageEntity();
             // msg.setTitle("My first post!");
             // msg.setBody("First message");

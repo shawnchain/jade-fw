@@ -22,13 +22,10 @@
 package com.nonsoft.discuss.page;
 
 import com.nonsoft.access.AuthException;
-import com.nonsoft.access.AuthenticationService;
 import com.nonsoft.annotation.InjectComponent;
 import com.nonsoft.annotation.Parameter;
-import com.nonsoft.discuss.domain.IUser;
-import com.nonsoft.discuss.service.UserService;
+import com.nonsoft.discuss.service.AuthService;
 import com.nonsoft.web.action.ActionTarget;
-import com.nonsoft.web.context.Session;
 import com.nonsoft.web.controller.RuntimeData;
 import com.nonsoft.web.form.Form;
 import com.nonsoft.web.view.Page;
@@ -45,16 +42,9 @@ import com.nonsoft.web.view.Page;
  */
 
 public class Login extends Page {
-    private static final String SESSION_KEY = "__user_id__";
     
     @InjectComponent()
-    private AuthenticationService authService;
-    
-    @InjectComponent()
-    private UserService userService;
-    
-    @InjectComponent()
-    private Session session;
+    private AuthService authService;
     
     @Parameter(expression="request.param.logout",context="runtime", isMust=false)
     private String logout;
@@ -63,16 +53,15 @@ public class Login extends Page {
     public ActionTarget execute(RuntimeData runtimeData) throws Throwable {
         
         //If user has already logged in, skip the authentication process
-        if(session.getValue(SESSION_KEY) != null){
+        if(authService.isAuthenticated()){
+            // Is logout ?
             if(logout != null){
-                // do logout
-                //session.
-                session.setValue(SESSION_KEY, null);
+                authService.doLogout();
             }
-            // User already logged in ?
             return ActionTarget.redirect("/index.jsp");
         }
         
+        // Validate form data
         Form form = runtimeData.getForm();
         if(form == null){
             return null;
@@ -82,16 +71,11 @@ public class Login extends Page {
             return null;
         }
         
+        // Do auth
         String username = (String)form.getField("username").getValue();
         String password = (String)form.getField("password").getValue();
         try{
-            authService.authenticate(username, password);
-            
-            // Authenticate success, now try to retrieve the user info
-            IUser user = userService.loadUser(username);
-            Long id = user.getId();
-            //runtimeData.getRequest().unWrap()
-            session.setValue(SESSION_KEY, id);
+            authService.doAuth(username, password);
             return ActionTarget.redirect("/index.jsp");
         }catch(AuthException ae){
             getContext().put("error", ae.getFailReason());

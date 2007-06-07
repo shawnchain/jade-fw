@@ -25,9 +25,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.nonsoft.annotation.InjectComponent;
-import com.nonsoft.bo.Entity;
-import com.nonsoft.discuss.domain.IUser;
+import com.nonsoft.discuss.domain.User;
 import com.nonsoft.discuss.entity.UserEntity;
+import com.nonsoft.domain.Entity;
 import com.nonsoft.ioc.IContainer;
 import com.nonsoft.persistence.hibernate3.HibernateDAOSupport;
 import com.nonsoft.persistence.hibernate3.HibernateOperations;
@@ -50,27 +50,38 @@ public class UserService {
     @InjectComponent()
     private HibernateDAOSupport daoSupport;
     
-    public IUser loadUser(Long id){
+    /**
+     * Load user by id
+     * @param id
+     * @return
+     */
+    public User loadUser(Long id){
+        //FIXME userEntity is lazy-loaded so we should use "eager fetch strategy" here
         Entity entity = (Entity) daoSupport.loadEntity(UserEntity.class, id);
         if (entity == null) {
             return null;
         }
-        return (IUser) container.getComponentInstance(IUser.class, new Class[] { Entity.class },
+        return (User) container.getComponentInstance(User.class, new Class[] { Entity.class },
                 new Object[] { entity });
     }
     
-    public IUser loadUser(String email){
-        Iterator i = ((List)daoSupport.execute(HibernateOperations.list("from UserEntity u where u.email=?", email))).iterator();
+    /**
+     * Load user by token. In this system, we use email as the unique token
+     * @param token
+     * @return
+     */
+    public User findUserByToken(String token){
+        //FIXME userEntity is lazy-loaded so we should use "eager fetch strategy" here
+        Iterator i = ((List)daoSupport.execute(HibernateOperations.list("from UserEntity u where u.email=?", token))).iterator();
         if(i.hasNext()){
             Entity entity = (Entity)i.next();
-            if (entity == null) {
+            if (entity == null || entity.getId() == null) {
                 return null;
             }
-            return (IUser) container.getComponentInstance(IUser.class, new Class[] { Entity.class },
+            return (User) container.getComponentInstance(User.class, new Class[] { Entity.class },
                     new Object[] { entity });
         }
         return null;
-
     }
     
 }

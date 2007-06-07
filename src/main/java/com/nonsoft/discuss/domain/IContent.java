@@ -24,7 +24,8 @@ package com.nonsoft.discuss.domain;
 import java.util.Date;
 
 import com.nonsoft.IUnknow;
-import com.nonsoft.bo.Entity;
+import com.nonsoft.domain.ActiveRecord;
+import com.nonsoft.domain.Entity;
 
 /**
  * <p>
@@ -37,7 +38,7 @@ import com.nonsoft.bo.Entity;
  * @since
  */
 
-public interface IContent extends IUnknow{
+public interface IContent extends IUnknow, ActiveRecord{
     public Long getId();
     public String getTitle();
     public String getBody();
@@ -47,7 +48,7 @@ public interface IContent extends IUnknow{
     
     public Entity getEntity();
     
-    public Entity save();
+    //public Entity save();
     
     public String getCreator();
     

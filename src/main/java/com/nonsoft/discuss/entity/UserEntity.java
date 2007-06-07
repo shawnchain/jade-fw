@@ -23,7 +23,7 @@ package com.nonsoft.discuss.entity;
 
 import java.util.Date;
 
-import com.nonsoft.bo.Entity;
+import com.nonsoft.domain.Entity;
 
 /**
  * <p>

@@ -1,5 +1,5 @@
 //==============================================================================
-// Created on 2007-5-31
+// Created on 2007-6-6
 // $Id$
 //==============================================================================
 //  Copyright (C) <2006,2007>  Shawn Qian, shawn.chain@gmail.com
@@ -22,6 +22,7 @@
 package com.nonsoft.access;
 
 /**
+ * 
  * <p>
  * </p>
  * 
@@ -31,21 +32,19 @@ package com.nonsoft.access;
  * @version 2.0, $Id$
  * @since
  */
-
-public class FileAuthenticationService implements AuthenticationService{
-    public void authenticate(String username, String password) throws AuthException{
-        if("lost".equals(username)){
-            throw new AuthException("No such user: " + username);
-        }
-        
-        if(!username.equals(password)){
-            throw new AuthException("Password not match!");
-        }
-        //return false;
-    }
-
-    public boolean changePassword(String username, String oldPassword, String newPassword) {
-        // TODO Auto-generated method stub
-        return false;
-    }
+public interface IPasswordStore {
+    /**
+     * 
+     * @param username
+     * @return
+     */
+    public String getPassword(String username);
+    
+    /**
+     * 
+     * @param username
+     * @param password
+     * @return
+     */
+    public void updatePassword(String username, String password);
 }

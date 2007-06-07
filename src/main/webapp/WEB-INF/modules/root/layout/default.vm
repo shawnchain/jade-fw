@@ -5,6 +5,19 @@
 		<link rel="stylesheet" href="css/forum.css"></link>
 	</head>
 <body>
+<div id="metanav" class="nav">
+	<ul>
+		#if($authHelper.isAuthenticated())
+			Welcome, You're logged in as $authHelper.authToken
+		<li class="first"><a href="login.htm?logout=true">Logout</a></li>
+		<li><a href="profile.htm">Profile</a></li>
+		#else
+		<li class="first"><a href="login.htm">Login</a></li>
+		#end
+		<li><a href="register.htm">Register</a></li>
+		<li class="last"><a href="about.htm">About Discuss</a></li>
+	</ul>
+</div>
 $screen_placeholder
 </body>
 </html>
