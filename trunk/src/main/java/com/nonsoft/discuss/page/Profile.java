@@ -21,9 +21,10 @@
 
 package com.nonsoft.discuss.page;
 
+import com.nonsoft.access.AccessException;
+import com.nonsoft.access.web.AccessService;
 import com.nonsoft.annotation.InjectComponent;
 import com.nonsoft.annotation.Transactional;
-import com.nonsoft.discuss.service.AuthService;
 import com.nonsoft.discuss.service.UserService;
 import com.nonsoft.web.action.ActionTarget;
 import com.nonsoft.web.controller.RuntimeData;
@@ -44,7 +45,7 @@ public class Profile extends Page {
     //private static final String SESSION_KEY = "__user_id__";
     
     @InjectComponent()
-    private AuthService authService;
+    private AccessService authService;
     
     @InjectComponent()
     private UserService userService;
@@ -60,7 +61,8 @@ public class Profile extends Page {
         String token = (String)authService.getAuthToken();
         if(token == null){
             // user is not authenticated, redirect to the login page
-            return ActionTarget.redirect("/login.htm");
+            //return ActionTarget.redirect("/login.htm");
+            throw new AccessException();
         }
         
 //        
@@ -74,7 +76,7 @@ public class Profile extends Page {
 //        }
 //        
 //        // Validate form data
-//        Form form = runtimeData.getForm();
+//        Form form = runtime.getForm();
 //        if(form == null){
 //            return null;
 //        }
@@ -89,7 +91,7 @@ public class Profile extends Page {
 //        try{
 //            authService.doAuth(username, password);
 //            return ActionTarget.redirect("/index.jsp");
-//        }catch(AuthException ae){
+//        }catch(AuthenticationException ae){
 //            getContext().put("error", ae.getFailReason());
 //        }
         return null;

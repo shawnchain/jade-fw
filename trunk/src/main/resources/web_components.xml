@@ -7,10 +7,10 @@
 		</component>
 
 		<!-- Auth service and password store -->
-		<component class="com.nonsoft.access.CryptAuthenticationService" scope="container">
+		<component class="com.nonsoft.access.authentication.CryptAuthenticationService" scope="container">
 			<property name="passwordStore" />
 		</component>
-		<component class="com.nonsoft.access.MemoryPasswordStore" scope="container">
+		<component class="com.nonsoft.access.authentication.MemoryPasswordStore" scope="container">
 			<property name="passwords">
 				<map>
 					<entry key="admin">
@@ -26,6 +26,18 @@
 			</property>
 			</component>
 		-->
+		<!-- Access services -->
+		<component class="com.nonsoft.access.web.AccessExceptionHandler" scope="container">
+			<property name="config"/>
+			<property name="requestHandler" />
+			<property name="loginPage" value="/login.htm" />
+		</component>
+		
+		<component class="com.nonsoft.access.web.AccessService" scope="container">
+			<property name="runtimeHelperProvider" />
+			<property name="authService" />
+			<property name="runtime" autowire="byName" proxy="true" />
+		</component>
 
 		<!-- Filte rservice -->
 		<component class="com.nonsoft.discuss.filter.FilterService" scope="container">

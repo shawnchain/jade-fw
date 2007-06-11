@@ -1,24 +1,24 @@
-package com.nonsoft.discuss.service;
+package com.nonsoft.access.web;
 
 import org.apache.log4j.Logger;
 import org.picocontainer.Startable;
 
-import com.nonsoft.access.AuthException;
-import com.nonsoft.access.AuthenticationService;
+import com.nonsoft.access.authentication.AuthenticationException;
+import com.nonsoft.access.authentication.AuthenticationService;
 import com.nonsoft.annotation.InjectComponent;
 import com.nonsoft.annotation.LazyLoad;
 import com.nonsoft.web.context.Session;
 import com.nonsoft.web.controller.RuntimeData;
 import com.nonsoft.web.utils.RuntimeHelperProvider;
 
-public class AuthService implements Startable {
-    private static final Logger logger = Logger.getLogger(AuthService.class);
+public class AccessService implements Startable {
+    private static final Logger logger = Logger.getLogger(AccessService.class);
 
     @InjectComponent
     private RuntimeHelperProvider runtimeHelperProvider;
     
     @InjectComponent
-    private AuthenticationService backendAuthServer;
+    private AuthenticationService authService;
     
     //@InjectComponent
     //private UserService userService;
@@ -41,7 +41,7 @@ public class AuthService implements Startable {
     // Special! Inject runtime instance
     @InjectComponent(key="runtime")
     @LazyLoad(cacheInstance=false)
-    RuntimeData runtimeData;
+    RuntimeData runtime;
     
     public Object getAuthToken() {
         Session session = getSession();
@@ -56,11 +56,11 @@ public class AuthService implements Startable {
      * @param username
      * @param password
      * @return Object the auth token
-     * @throws AuthException
+     * @throws AuthenticationException
      */
-    public Object doAuth(String username, String password) throws AuthException{
+    public Object doAuth(String username, String password) throws AuthenticationException{
         // Delegate to the backend auth service
-        backendAuthServer.authenticate(username, password);
+        authService.authenticate(username, password);
         
         // If runs here, auth success. Store the token in session
         // Here we'll use the email as the auth token
@@ -73,11 +73,11 @@ public class AuthService implements Startable {
         return username;
     }
     
-    public void doLogout() throws AuthException{
+    public void doLogout() throws AuthenticationException{
         if(isAuthenticated()){
             getSession().setValue(AUTH_TOKEN, null);
         }else{
-            throw new AuthException("User is not authenticated in yet");   
+            throw new AuthenticationException("User is not authenticated in yet");   
         }
     }
     
@@ -91,8 +91,8 @@ public class AuthService implements Startable {
     }
     
     private Session getSession(){
-        if(runtimeData != null){
-            return runtimeData.getSession();
+        if(runtime != null){
+            return runtime.getSession();
         }
         return null;
     }
