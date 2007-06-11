@@ -21,10 +21,10 @@
 
 package com.nonsoft.discuss.page;
 
-import com.nonsoft.access.AuthException;
+import com.nonsoft.access.authentication.AuthenticationException;
+import com.nonsoft.access.web.AccessService;
 import com.nonsoft.annotation.InjectComponent;
 import com.nonsoft.annotation.Parameter;
-import com.nonsoft.discuss.service.AuthService;
 import com.nonsoft.web.action.ActionTarget;
 import com.nonsoft.web.controller.RuntimeData;
 import com.nonsoft.web.form.Form;
@@ -44,10 +44,13 @@ import com.nonsoft.web.view.Page;
 public class Login extends Page {
     
     @InjectComponent()
-    private AuthService authService;
+    private AccessService authService;
     
     @Parameter(expression="request.param.logout",context="runtime", isMust=false)
     private String logout;
+    
+    @Parameter(expression="request.param.target",context="runtime", isMust=false)
+    private String target = "/";
     
     @Override
     public ActionTarget execute(RuntimeData runtimeData) throws Throwable {
@@ -76,8 +79,8 @@ public class Login extends Page {
         String password = (String)form.getField("password").getValue();
         try{
             authService.doAuth(username, password);
-            return ActionTarget.redirect("/index.jsp");
-        }catch(AuthException ae){
+            return ActionTarget.redirect(target);
+        }catch(AuthenticationException ae){
             getContext().put("error", ae.getFailReason());
         }
         return null;

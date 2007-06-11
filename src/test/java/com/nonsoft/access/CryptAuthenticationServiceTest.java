@@ -1,6 +1,10 @@
 
 package com.nonsoft.access;
 
+import com.nonsoft.access.authentication.AuthenticationException;
+import com.nonsoft.access.authentication.CryptAuthenticationService;
+import com.nonsoft.access.authentication.MemoryPasswordStore;
+
 import junit.framework.TestCase;
 
 /**
@@ -24,13 +28,13 @@ public class CryptAuthenticationServiceTest extends TestCase {
         try {
             as.authenticate("root", "badpassword");
             fail("Should fail");
-        } catch (AuthException e) {
+        } catch (AuthenticationException e) {
             System.out.println("Got expected exception " + e);
         }
         
         try {
             as.authenticate("root", "secret");
-        } catch (AuthException e) {
+        } catch (AuthenticationException e) {
             fail(e.getMessage());
         }
     }

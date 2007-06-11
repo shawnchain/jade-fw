@@ -1,6 +1,5 @@
 package com.nonsoft.discuss.domain.internal;
 
-
 import com.nonsoft.annotation.InjectComponent;
 import com.nonsoft.domain.AbstractDomainObject;
 import com.nonsoft.domain.Entity;
@@ -13,7 +12,9 @@ import com.nonsoft.persistence.IDAO;
  * Java5 version of Active Record
  * </p>
  * 
- * <p>Copyright: Copyright (c) 2003-2006 NonSoft.com</p>
+ * <p>
+ * Copyright: Copyright (c) 2003-2006 NonSoft.com
+ * </p>
  * 
  * @author Shawn Qian
  * @version 2.0, $Id$
@@ -22,7 +23,7 @@ import com.nonsoft.persistence.IDAO;
 public abstract class DiscussDomainObject extends AbstractDomainObject {
 
     private IContainer container;
-    
+
     private IDAO dao;
 
     public DiscussDomainObject(Entity entity) {

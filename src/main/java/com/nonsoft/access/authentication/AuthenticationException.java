@@ -1,5 +1,5 @@
 
-package com.nonsoft.access;
+package com.nonsoft.access.authentication;
 
 /**
  * 
@@ -12,19 +12,19 @@ package com.nonsoft.access;
  * @version 2.0, $Id$
  * @since
  */
-public class AuthException extends Exception{
+public class AuthenticationException extends Exception{
     private static final long serialVersionUID = -206512961137454244L;
     private String failReason;
     public String getFailReason() {
         return failReason;
     }
 
-    public AuthException(String reason, Throwable cause) {
+    public AuthenticationException(String reason, Throwable cause) {
         super(reason, cause);
         this.failReason = reason;
     }
 
-    public AuthException(String reason) {
+    public AuthenticationException(String reason) {
         super(reason);
         this.failReason = reason;
     }

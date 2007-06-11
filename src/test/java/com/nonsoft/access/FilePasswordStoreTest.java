@@ -1,6 +1,8 @@
 
 package com.nonsoft.access;
 
+import com.nonsoft.access.authentication.FilePasswordStore;
+
 import junit.framework.TestCase;
 
 public class FilePasswordStoreTest extends TestCase {

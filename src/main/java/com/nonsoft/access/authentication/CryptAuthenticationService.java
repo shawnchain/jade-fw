@@ -19,11 +19,11 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //==============================================================================
 
-package com.nonsoft.access;
+package com.nonsoft.access.authentication;
 
 import org.apache.log4j.Logger;
 
-import com.nonsoft.access.util.MD5Crypt;
+import com.nonsoft.access.authentication.util.MD5Crypt;
 import com.nonsoft.annotation.InjectComponent;
 
 /**
@@ -57,10 +57,10 @@ public class CryptAuthenticationService implements AuthenticationService {
         this.passwordStore = pstore;
     }
 
-    public synchronized void authenticate(String username, String password) throws AuthException {
+    public synchronized void authenticate(String username, String password) throws AuthenticationException {
         String expectedHash = passwordStore.getPassword(username);
         if(expectedHash == null){
-            throw new AuthException("No such user: " + username);
+            throw new AuthenticationException("No such user: " + username);
         }
         
         String passwordHash;
@@ -74,13 +74,13 @@ public class CryptAuthenticationService implements AuthenticationService {
         }
         
         if(!passwordHash.equals(expectedHash)){
-            throw new AuthException("Password does not match!");
+            throw new AuthenticationException("Password does not match!");
         }
         
         //go.. go.. go.., ole..ole...ole...
     }
     
-    public boolean changePassword(String username, String oldPassword, String newPassword) throws AuthException{
+    public boolean changePassword(String username, String oldPassword, String newPassword) throws AuthenticationException{
         // Check against the original password first
         authenticate(username,oldPassword);
         passwordStore.updatePassword(username, newPassword);

@@ -19,7 +19,7 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //==============================================================================
 
-package com.nonsoft.access;
+package com.nonsoft.access.authentication;
 
 /**
  * <p>
@@ -40,7 +40,7 @@ public interface AuthenticationService {
      * @return
      * //TODO Exception and auth hint support
      */
-    public void authenticate(String username, String password) throws AuthException;
+    public void authenticate(String username, String password) throws AuthenticationException;
     
     /**
      * 
@@ -49,6 +49,6 @@ public interface AuthenticationService {
      * @param newPassword
      * @return
      */
-    public boolean changePassword(String username, String oldPassword, String newPassword) throws AuthException;
+    public boolean changePassword(String username, String oldPassword, String newPassword) throws AuthenticationException;
     
 }

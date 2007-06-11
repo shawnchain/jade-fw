@@ -1,5 +1,5 @@
 
-package com.nonsoft.access.util;
+package com.nonsoft.access.authentication.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
