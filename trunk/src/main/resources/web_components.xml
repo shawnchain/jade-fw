@@ -6,11 +6,8 @@
 			<property name="sessionManager" />
 		</component>
 
-		<!-- Auth service and password store -->
-		<component class="com.nonsoft.access.authentication.CryptAuthenticationService" scope="container">
-			<property name="passwordStore" />
-		</component>
-		<component class="com.nonsoft.access.authentication.MemoryPasswordStore" scope="container">
+		<!-- Password store for AuthService -->
+		<component key="memoryStore" class="com.nonsoft.access.authentication.MemoryPasswordStore" scope="container">
 			<property name="passwords">
 				<map>
 					<entry key="admin">
@@ -20,25 +17,13 @@
 			</property>
 		</component>
 		<!--
-			<component class="com.nonsoft.access.FilePasswordStore" scope="container">
+			<component key="fileStore" class="com.nonsoft.access.FilePasswordStore" scope="container">
 			<property name="passwordFilePath">
 			<value>passwd</value>
 			</property>
 			</component>
 		-->
-		<!-- Access services -->
-		<component class="com.nonsoft.access.web.AccessExceptionHandler" scope="container">
-			<property name="config"/>
-			<property name="requestHandler" />
-			<property name="loginPage" value="/login.htm" />
-		</component>
 		
-		<component class="com.nonsoft.access.web.AccessService" scope="container">
-			<property name="runtimeHelperProvider" />
-			<property name="authService" />
-			<property name="runtime" autowire="byName" proxy="true" />
-		</component>
-
 		<!-- Filte rservice -->
 		<component class="com.nonsoft.discuss.filter.FilterService" scope="container">
 			<property name="filters">
