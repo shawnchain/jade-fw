@@ -45,7 +45,7 @@ public class Profile extends Page {
     //private static final String SESSION_KEY = "__user_id__";
     
     @InjectComponent()
-    private AccessService authService;
+    private AccessService accessService;
     
     @InjectComponent()
     private UserService userService;
@@ -58,7 +58,7 @@ public class Profile extends Page {
     public ActionTarget execute(RuntimeData runtimeData) throws Throwable {
         //FIXME this logic could be done by a SecurityProcessor
         // or customized exception handler
-        String token = (String)authService.getAuthToken();
+        String token = (String)accessService.getAuthToken();
         if(token == null){
             // user is not authenticated, redirect to the login page
             //return ActionTarget.redirect("/login.htm");
@@ -101,7 +101,7 @@ public class Profile extends Page {
     @Transactional()
     public void render() throws Throwable {
         // Load the user object and store it into context
-        String token = (String)authService.getAuthToken();
+        String token = (String)accessService.getAuthToken();
         getContext().put("user", userService.findUserByToken(token));
 
 //        Group group = (Group)Group.load(new Long(1));

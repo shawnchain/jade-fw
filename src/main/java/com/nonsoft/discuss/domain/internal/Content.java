@@ -79,10 +79,10 @@ public class Content extends DiscussDomainObject implements IContent {
     }
 
     public void setBody(String body) {
-        setEntityProperty("body", String.class, body);
+        setEntityProperty("body", body);
     }
 
     public void setTitle(String title) {
-        setEntityProperty("title", String.class, title);
+        setEntityProperty("title", title);
     }
 }

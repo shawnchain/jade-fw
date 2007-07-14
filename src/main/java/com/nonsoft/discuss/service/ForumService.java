@@ -12,14 +12,16 @@ import com.nonsoft.discuss.entity.MessageEntity;
 import com.nonsoft.discuss.entity.TopicEntity;
 import com.nonsoft.domain.Entity;
 import com.nonsoft.ioc.IContainer;
-import com.nonsoft.persistence.hibernate3.HibernateDAOSupport;
+import com.nonsoft.persistence.IDAO;
+import com.nonsoft.persistence.hibernate3.HibernateOperations;
 
 public class ForumService {
     @InjectComponent()
     private IContainer container;
 
     @InjectComponent()
-    private HibernateDAOSupport daoSupport;
+    private IDAO daoSupport;
+    //private HibernateDAOSupport daoSupport;
 
     /**
      * The ListEntityInterceptor will convert the entity iterator to BO iterator
@@ -29,7 +31,8 @@ public class ForumService {
      */
     @ConvertResult(from = com.nonsoft.domain.Entity.class, to = com.nonsoft.discuss.domain.IForum.class)
     public Iterator listForums() {
-        return daoSupport.iterate("from ForumEntity");
+        return (Iterator)daoSupport.execute(HibernateOperations.iterate("from ForumEntity"));
+        //return daoSupport.iterate("from ForumEntity");
     }
 
     /**
