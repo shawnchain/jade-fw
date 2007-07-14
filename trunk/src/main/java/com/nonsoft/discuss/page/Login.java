@@ -81,7 +81,7 @@ public class Login extends Page {
             authService.doAuth(username, password);
             return ActionTarget.redirect(target);
         }catch(AuthenticationException ae){
-            getContext().put("error", ae.getFailReason());
+            getContext().put("error", ae.getReason());
         }
         return null;
     }

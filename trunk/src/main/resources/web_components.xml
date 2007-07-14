@@ -2,10 +2,12 @@
 <container xmlns="http://www.nonsoft.com/JADE/1.0" name="/web" abortOnError="true">
 	<components>
 		<!-- DAO support -->
+		<!--
 		<component key="com.nonsoft.persistence.IDAO" class="com.nonsoft.persistence.hibernate3.HibernateDAOSupport" scope="container">
 			<property name="sessionManager" />
 		</component>
-
+		-->
+		
 		<!-- Password store for AuthService -->
 		<component key="memoryStore" class="com.nonsoft.access.authentication.MemoryPasswordStore" scope="container">
 			<property name="passwords">
@@ -40,11 +42,25 @@
 			methodAttribute="com.nonsoft.discuss.filter.ApplyFilter" methodPattern="^getBody$|^getTitle$" scope="instance">
 			<interceptor-ref>contentInterceptor</interceptor-ref>
 		</pointcut>
+		
+		<pointcut interface="com.nonsoft.web.action.IAction"
+			methodAttribute="com.nonsoft.annotation.SecurityCheck" methodPattern="^execute$" scope="instance">
+			<interceptor-ref>securityInterceptor</interceptor-ref>
+		</pointcut>
+		
+		<pointcut interface="com.nonsoft.web.action.IAction"
+			methodAttribute="com.nonsoft.annotation.ValidateForm" methodPattern="^execute$" scope="instance">
+			<interceptor-ref>validateFormInterceptor</interceptor-ref>
+		</pointcut>
 	</aspects>
 	
 	<advices>
 		<interceptor key="contentInterceptor" class="com.nonsoft.discuss.filter.ContentInterceptor" scope="container">
 			<!-- property name="cache" value="true"/ -->
 		</interceptor>
+		
+		<!-- TODO promote to default jade web config -->
+		<interceptor key="securityInterceptor" class="com.nonsoft.discuss.interceptor.SecurityCheckInterceptor" scope="instance" />
+		<interceptor key="validateFormInterceptor" class="com.nonsoft.discuss.interceptor.ValidateFormInterceptor" scope="container" />
 	</advices>
 </container>
