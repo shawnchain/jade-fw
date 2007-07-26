@@ -2,6 +2,8 @@
 = One Minute Tutorial =
 This wiki will show you how to use JADE-Core as an IoC container.
 
+*NOTE* This wiki is outdated, please visit http://dev.nonsoft.com/projects/jade/wiki/quick_start for the latest documents.
+
 = Environment Setup =
 == Maven2 Setup ==
 You need maven2 to run the sample codes. To verify your maven installation, use the following command: 
@@ -20,13 +22,12 @@ C:\jade-tutorial-1>mvn eclipse:eclipse
 If you have problem on setting up the classpath, please check out the doc here: http://maven.apache.org/plugins/maven-eclipse-plugin/overview.html
 
 = Download the tutorial code =
-Then please download the attached tutorial source code. [attachment:"jade-tutorial-1.zip?format=raw" jade-tutorial-1.zip]
+Then please download the attached tutorial source code. [http://jade-fw.googlecode.com/files/jade-tutorial-1.zip jade-tutorial-1.zip]
 
 = Prepare the beans =
 Now let's introduce some classes. 
 == The Kissable interface ==
 {{{
-#!cpp
 package test.model;
 
 public interface Kissable {
@@ -159,4 +160,6 @@ assertNotNull(girl.getBoy());
 }}}
 
 = Next Topic =
-That's it! Now we can go one step further to learn more about JADE-Core [wiki:quick_start/2_min_tutorial Using AOP]
+That's it! Now we can go one step further to learn more about JADE-Core -> [TwoMinuteTutorial]
+
+
