@@ -94,6 +94,6 @@ You can:
  * Take a rest
  * Check AdvancedComponentConfig
  * Read more about JADE Framework - FiveMinuteIntroduction
- * Project Server - http://jade.nonsoft.com/trac
+ * Project Server - http://jade.nonsoft.com/trac/
 
 Also, there is a demo site available at http://jade.nonsoft.com/demo/ , which is powered by JADE Framework 
