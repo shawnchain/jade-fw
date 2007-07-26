@@ -12,7 +12,6 @@ Please download the attached tutorial source code. attachment:"jade-tutorial-2.z
 ''Note'': JADE-Core currently only supports AOPAlliance interceptor
 == The KissInterceptor class ==
 {{{
-#!cpp
 package test.interceptor;
 
 import org.aopalliance.intercept.MethodInterceptor;
@@ -77,7 +76,6 @@ Change the config file to:
 
 = Test It =
 {{{
-#!cpp
 IContainer container = ContainerFactory.getInstance("components.xml").getContainer();
 Girl girl = (Girl)container.getComponentInstance(Girl.class);
 girl.kiss();
@@ -96,7 +94,7 @@ You can:
  * Take a rest
  * Check AdvancedComponentConfig
  * Read more about JADE Framework - FiveMinuteIntroduction
+ * Project Server - http://jade.nonsoft.com/
 
 Also, there is a demo site available at http://jade.nonsoft.com/demo/ , which is powered by JADE Framework 
-
 
