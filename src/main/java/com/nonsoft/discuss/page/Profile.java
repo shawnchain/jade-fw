@@ -21,9 +21,9 @@
 
 package com.nonsoft.discuss.page;
 
-import com.nonsoft.access.AccessException;
 import com.nonsoft.access.web.AccessService;
-import com.nonsoft.annotation.InjectComponent;
+import com.nonsoft.annotation.Inject;
+import com.nonsoft.annotation.SecurityCheck;
 import com.nonsoft.annotation.Transactional;
 import com.nonsoft.discuss.service.UserService;
 import com.nonsoft.web.action.ActionTarget;
@@ -44,26 +44,27 @@ import com.nonsoft.web.view.Page;
 public class Profile extends Page {
     //private static final String SESSION_KEY = "__user_id__";
     
-    @InjectComponent()
+    @Inject()
     private AccessService accessService;
     
-    @InjectComponent()
+    @Inject()
     private UserService userService;
     
-//    @Parameter(expression="request.param.logout",context="runtime", isMust=false)
+//    @Parameter(expr="request.param.logout")
 //    private String logout;
     
     @Override
     @Transactional
+    @SecurityCheck
     public ActionTarget execute(RuntimeData runtimeData) throws Throwable {
-        //FIXME this logic could be done by a SecurityProcessor
-        // or customized exception handler
-        String token = (String)accessService.getAuthToken();
-        if(token == null){
-            // user is not authenticated, redirect to the login page
-            //return ActionTarget.redirect("/login.htm");
-            throw new AccessException();
-        }
+//        //FIXME this logic could be done by a SecurityProcessor
+//        // or by customized exception handler
+//        String token = (String)accessService.getAuthToken();
+//        if(token == null){
+//            // user is not authenticated, redirect to the login page
+//            //return ActionTarget.redirect("/login.htm");
+//            throw new AccessException();
+//        }
         
 //        
 //        //If user has already logged in, skip the authentication process

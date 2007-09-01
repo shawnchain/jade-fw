@@ -23,7 +23,7 @@ package com.nonsoft.discuss.page;
 
 import com.nonsoft.access.authentication.AuthenticationException;
 import com.nonsoft.access.web.AccessService;
-import com.nonsoft.annotation.InjectComponent;
+import com.nonsoft.annotation.Inject;
 import com.nonsoft.annotation.Parameter;
 import com.nonsoft.web.action.ActionTarget;
 import com.nonsoft.web.controller.RuntimeData;
@@ -38,18 +38,20 @@ import com.nonsoft.web.view.Page;
  * 
  * @author Shawn Qian
  * @version 2.0, $Id$
- * @since
+ * @since 1.0
+ * 
  */
 
+@Parameter(rootObject="runtime",expr="request.param")
 public class Login extends Page {
     
-    @InjectComponent()
+    @Inject()
     private AccessService authService;
     
-    @Parameter(expression="request.param.logout",context="runtime", isMust=false)
+    @Parameter() // $request.parameters.logout
     private String logout;
     
-    @Parameter(expression="request.param.target",context="runtime", isMust=false)
+    @Parameter() // $request.parameters.target
     private String target = "/";
     
     @Override
@@ -61,7 +63,7 @@ public class Login extends Page {
             if(logout != null){
                 authService.doLogout();
             }
-            return ActionTarget.redirect("/index.jsp");
+            return ActionTarget.redirect(target/*"/index.jsp"*/);
         }
         
         // Validate form data

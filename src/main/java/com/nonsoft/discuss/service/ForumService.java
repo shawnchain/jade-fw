@@ -3,7 +3,7 @@ package com.nonsoft.discuss.service;
 import java.util.Iterator;
 
 import com.nonsoft.annotation.ConvertResult;
-import com.nonsoft.annotation.InjectComponent;
+import com.nonsoft.annotation.Inject;
 import com.nonsoft.discuss.domain.IForum;
 import com.nonsoft.discuss.domain.IMessage;
 import com.nonsoft.discuss.domain.ITopic;
@@ -16,10 +16,10 @@ import com.nonsoft.persistence.IDAO;
 import com.nonsoft.persistence.hibernate3.HibernateOperations;
 
 public class ForumService {
-    @InjectComponent()
+    @Inject()
     private IContainer container;
 
-    @InjectComponent()
+    @Inject()
     private IDAO daoSupport;
     //private HibernateDAOSupport daoSupport;
 
@@ -36,15 +36,14 @@ public class ForumService {
     }
 
     /**
-     * @ConvertResult(from=com.nonsoft.bo.Entity.class, to=com.nonsoft.discuss.domain.IForum.class)
+     * 
      * @param id
      * @return
+     * 
      */
     public IForum loadForum(Long id) {
-        // Entity entity = (Entity)daoSupport.loadEntity(ForumEntity.class, id);
-        // return entity;
         Entity entity = (Entity) daoSupport.loadEntity(ForumEntity.class, id);
-        if (entity == null) {
+        if (entity == null || entity.getId() == null) {
             return null;
         }
         return (IForum) container.getComponentInstance(IForum.class, new Class[] { Entity.class },

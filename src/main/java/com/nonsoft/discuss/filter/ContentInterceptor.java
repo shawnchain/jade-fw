@@ -30,7 +30,7 @@ import org.aopalliance.intercept.MethodInvocation;
 import org.apache.log4j.Logger;
 
 import com.nonsoft.annotation.AnnotationSupport;
-import com.nonsoft.annotation.InjectComponent;
+import com.nonsoft.annotation.Inject;
 import com.nonsoft.discuss.domain.IContent;
 
 /**
@@ -57,10 +57,10 @@ public class ContentInterceptor implements MethodInterceptor {
 
     private Map<String, CacheEntry> cache = java.util.Collections.synchronizedMap(new HashMap<String, CacheEntry>());
 
-    // @InjectComponent()
+    // @Inject()
     //private boolean cacheResult = true;
 
-    @InjectComponent()
+    @Inject()
     private FilterService renderService;
 
     public Object invoke(MethodInvocation invocation) throws Throwable {
@@ -83,6 +83,7 @@ public class ContentInterceptor implements MethodInterceptor {
             return entry.content;
         } else {
             entry = new CacheEntry();
+            //FIXME what if content is NULL ? still cache it ??
             entry.content = renderService.render((String) invocation.proceed());
             entry.timestamp = getTimestamp(content);
             if (entry.timestamp == null) {

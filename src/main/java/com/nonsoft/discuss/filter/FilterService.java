@@ -34,6 +34,9 @@ public class FilterService {
     }
     
     public String render(String input){
+        if(input == null){
+            return null;
+        }
         String output = input;
         for(Iterator<IContentFilter> i = filters.iterator();i.hasNext();){
             output = i.next().apply(output);

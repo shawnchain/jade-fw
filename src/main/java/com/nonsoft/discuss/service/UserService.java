@@ -24,7 +24,7 @@ package com.nonsoft.discuss.service;
 import java.util.Iterator;
 import java.util.List;
 
-import com.nonsoft.annotation.InjectComponent;
+import com.nonsoft.annotation.Inject;
 import com.nonsoft.discuss.domain.User;
 import com.nonsoft.discuss.entity.UserEntity;
 import com.nonsoft.domain.Entity;
@@ -44,10 +44,10 @@ import com.nonsoft.persistence.hibernate3.HibernateOperations;
  */
 
 public class UserService {
-    @InjectComponent()
+    @Inject()
     private IContainer container;
 
-    @InjectComponent()
+    @Inject()
     private HibernateDAOSupport daoSupport;
     
     /**

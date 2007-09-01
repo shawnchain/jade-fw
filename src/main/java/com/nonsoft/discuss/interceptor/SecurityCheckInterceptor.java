@@ -24,8 +24,9 @@ package com.nonsoft.discuss.interceptor;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 
+import com.nonsoft.access.AccessException;
 import com.nonsoft.access.web.AccessService;
-import com.nonsoft.annotation.InjectComponent;
+import com.nonsoft.annotation.Inject;
 
 /**
  * <p>
@@ -41,7 +42,7 @@ import com.nonsoft.annotation.InjectComponent;
  */
 
 public class SecurityCheckInterceptor implements MethodInterceptor {
-    @InjectComponent()
+    @Inject
     private AccessService accessService;
     
     public SecurityCheckInterceptor(){
@@ -49,7 +50,11 @@ public class SecurityCheckInterceptor implements MethodInterceptor {
     }
     
     public Object invoke(MethodInvocation invocation) throws Throwable {
-        System.err.println(accessService.isAuthenticated());
+        //FIXME should delegate to the authorization service to check whether 
+        // current principal is allowd to access the target resource
+        if(!accessService.isAuthenticated()){
+            throw new AccessException("Not authenticated yet");
+        }
         return invocation.proceed();
     }
 }

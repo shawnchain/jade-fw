@@ -1,8 +1,8 @@
 
 package com.nonsoft.discuss.page;
 
-import com.nonsoft.annotation.InjectComponent;
-import com.nonsoft.annotation.InjectParameter;
+import com.nonsoft.annotation.Inject;
+import com.nonsoft.annotation.Parameter;
 import com.nonsoft.annotation.SecurityCheck;
 import com.nonsoft.annotation.Transactional;
 import com.nonsoft.annotation.ValidateForm;
@@ -14,18 +14,18 @@ import com.nonsoft.web.form.Form;
 import com.nonsoft.web.view.Page;
 
 public class Post extends Page {
-    @InjectComponent()
+    @Inject()
     private ForumService forumService;
     
-    @InjectParameter(expression="request.param.forumId")
+    @Parameter(expr="request.param.forumId")
     private Long forumId;
     
     /* (non-Javadoc)
      * @see com.nonsoft.web.action.IAction#execute(com.nonsoft.web.controller.RuntimeData)
      */
-    @Transactional()
+    @Transactional
+    @ValidateForm    
     @SecurityCheck
-    @ValidateForm
     public ActionTarget execute(RuntimeData rd) throws Throwable {
         // !!! We do not need this code any more, because
         // The validateFormInterceptor will check whether form is valid or not

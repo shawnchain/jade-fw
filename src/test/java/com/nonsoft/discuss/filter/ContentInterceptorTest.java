@@ -6,9 +6,9 @@ import test.WebTestCase;
 
 import com.nonsoft.discuss.domain.IContent;
 import com.nonsoft.domain.Entity;
+import com.nonsoft.ioc.builder.defaults.ComponentBuilder;
 import com.nonsoft.ioc.internal.defaults.DefaultCoreContainer;
 import com.nonsoft.ioc.internal.util.AspectBuilder;
-import com.nonsoft.ioc.internal.util.ComponentAdapterBuilder;
 
 public class ContentInterceptorTest extends WebTestCase {
 
@@ -17,7 +17,7 @@ public class ContentInterceptorTest extends WebTestCase {
         AspectBuilder ab = new AspectBuilder();
         ab.beginPointcut().byInterface(IContent.class).and().byMethodName("getTitle|getBody").bindInterceptor(
                 "contentInterceptor").endPointcut();
-        c.registerComponent(new ComponentAdapterBuilder(FooContent.class).setAspectBuilder(ab).getAdapter());
+        c.registerComponent(new ComponentBuilder(FooContent.class).setAspectBuilder(ab).getAdapter());
         FooContent content = (FooContent)c.getComponentInstance(FooContent.class);
         assertNotNull(content);
         assertEquals("FOO", content.getTitle());

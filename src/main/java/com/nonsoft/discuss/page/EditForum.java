@@ -1,30 +1,32 @@
 
 package com.nonsoft.discuss.page;
 
-import com.nonsoft.annotation.InjectComponent;
-import com.nonsoft.annotation.InjectParameter;
+import com.nonsoft.annotation.Inject;
+import com.nonsoft.annotation.Parameter;
+import com.nonsoft.annotation.Transactional;
 import com.nonsoft.discuss.domain.IForum;
 import com.nonsoft.discuss.service.ForumService;
 import com.nonsoft.web.view.Page;
 
 public class EditForum extends Page {
     
-    @InjectComponent()
+    @Inject
     ForumService forumService;
     
-    @InjectParameter(expression="request.param.id")
+    @Parameter(expr="request.param.id")
     Long forumId;
     
     @Override
+    @Transactional
     public void render() throws Throwable {
         if(forumId == null){
-            throw new NullPointerException("Forum id is null!");
+            throw new NullPointerException("Forum id is missing or invalid!");
         }
         try{
             IForum forum = forumService.loadForum(forumId);
             getContext().put("forum", forum);
         }catch(Exception e){
-            throw new IllegalArgumentException("Forum not foudn with id " + forumId + ", possible cause: " + e.getMessage());
+            throw new IllegalArgumentException("Forum not found with id " + forumId + ", possible cause: " + e.getMessage());
         }
     }
 

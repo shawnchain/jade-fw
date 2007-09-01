@@ -1,7 +1,7 @@
 package com.nonsoft.discuss.page;
 
-import com.nonsoft.annotation.InjectComponent;
-import com.nonsoft.annotation.InjectParameter;
+import com.nonsoft.annotation.Inject;
+import com.nonsoft.annotation.Parameter;
 import com.nonsoft.annotation.Transactional;
 import com.nonsoft.discuss.domain.IMessage;
 import com.nonsoft.discuss.domain.ITopic;
@@ -15,19 +15,19 @@ import com.nonsoft.web.form.Form;
 import com.nonsoft.web.view.Page;
 
 public class Reply extends Page {
-    @InjectComponent()
+    @Inject()
     private ForumService forumService;
     
-    @InjectParameter(expression = "request.param.id")
+    @Parameter(expr = "request.param.id")
     private Long parentMessageId;
     
-    @InjectParameter(expression = "request.param.tid")
+    @Parameter(expr = "request.param.tid")
     private Long topicId;
 
-    @InjectParameter(expression = "request.param.quote")
+    @Parameter(expr = "request.param.quote")
     private Boolean quote = false;
     
-    @InjectParameter(expression = "request.param.event")
+    @Parameter(expr = "request.param.event")
     private String event;
 
     @Override

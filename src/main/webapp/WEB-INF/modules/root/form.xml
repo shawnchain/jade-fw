@@ -6,16 +6,17 @@
 	<!-- test settings -->
 	<formset>
 		<form name="postForm">
-			<field property="title" depends="required">
+			<field property="title" depends="required,maxlength">
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>500</var-value>
+				</var>
 			</field>
-			<field property="body" depends="required">
-			</field>
+			<field property="body" depends="required"></field>
 		</form>
 		<form name="loginForm">
-			<field property="username" depends="required">
-			</field>
-			<field property="password" depends="required">
-			</field>
+			<field property="username" depends="required"></field>
+			<field property="password" depends="required"></field>
 		</form>
 	</formset>
 </form-validation>
