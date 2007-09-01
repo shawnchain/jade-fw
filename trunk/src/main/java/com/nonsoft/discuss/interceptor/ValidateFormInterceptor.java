@@ -29,6 +29,9 @@ import com.nonsoft.web.form.Form;
 
 /**
  * <p>
+ * A simple invocation interceptor will be applied on actions/views
+ * to check whether form /post data is ready. 
+ * if true, go on, otherwise, return null;
  * </p>
  * 
  * <p>Copyright: Copyright (c) 2003-2006 NonSoft.com</p>

@@ -2,7 +2,7 @@ package com.nonsoft.discuss.service;
 
 import org.picocontainer.Startable;
 
-import com.nonsoft.annotation.InjectComponent;
+import com.nonsoft.annotation.Inject;
 import com.nonsoft.annotation.Transactional;
 import com.nonsoft.discuss.entity.ForumEntity;
 import com.nonsoft.discuss.entity.TopicEntity;
@@ -16,10 +16,10 @@ public class InitDataService implements Startable {
         System.setProperty("hibernate.hbm2ddl.auto", "create-drop");
     }
 
-    @InjectComponent()
+    @Inject()
     private IDAO daoSupport;
 
-    @InjectComponent()
+    @Inject()
     IContainer container;
 
     @Transactional()

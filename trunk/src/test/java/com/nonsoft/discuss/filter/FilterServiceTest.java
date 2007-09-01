@@ -1,9 +1,6 @@
 
 package com.nonsoft.discuss.filter;
 
-import com.nonsoft.discuss.filter.FilterService;
-import com.nonsoft.discuss.filter.IContentFilter;
-
 import test.WebTestCase;
 
 public class FilterServiceTest extends WebTestCase {

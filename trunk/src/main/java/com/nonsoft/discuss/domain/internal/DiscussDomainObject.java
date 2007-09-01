@@ -1,6 +1,6 @@
 package com.nonsoft.discuss.domain.internal;
 
-import com.nonsoft.annotation.InjectComponent;
+import com.nonsoft.annotation.Inject;
 import com.nonsoft.domain.AbstractDomainObject;
 import com.nonsoft.domain.Entity;
 import com.nonsoft.ioc.IContainer;
@@ -34,7 +34,7 @@ public abstract class DiscussDomainObject extends AbstractDomainObject {
         return dao;
     }
 
-    @InjectComponent()
+    @Inject()
     public void setDAO(IDAO daoSupport) {
         this.dao = daoSupport;
     }
@@ -43,7 +43,7 @@ public abstract class DiscussDomainObject extends AbstractDomainObject {
         return container;
     }
 
-    @InjectComponent()
+    @Inject()
     public void setContainer(IContainer container) {
         this.container = container;
     }

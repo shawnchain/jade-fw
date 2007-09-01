@@ -1,8 +1,8 @@
 
 package com.nonsoft.discuss.page;
 
-import com.nonsoft.annotation.InjectComponent;
-import com.nonsoft.annotation.InjectParameter;
+import com.nonsoft.annotation.Inject;
+import com.nonsoft.annotation.Parameter;
 import com.nonsoft.annotation.Transactional;
 import com.nonsoft.discuss.domain.IForum;
 import com.nonsoft.discuss.service.ForumService;
@@ -13,10 +13,12 @@ import com.nonsoft.web.view.Page;
 public class Forum extends Page {
 
     
-    @InjectComponent()
+    @Inject
     private ForumService forumService;
     
-    @InjectParameter(expression="request.param.id")
+    /*Inject(expr="request.parameters.id",optional=true,fuzzyType=true)*/
+    
+    @Parameter(expr="request.parameters.id") 
     private Long forumId;
     
     @Override

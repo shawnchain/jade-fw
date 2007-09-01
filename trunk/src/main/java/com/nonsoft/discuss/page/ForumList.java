@@ -1,13 +1,13 @@
 
 package com.nonsoft.discuss.page;
 
-import com.nonsoft.annotation.InjectComponent;
+import com.nonsoft.annotation.Inject;
 import com.nonsoft.annotation.Transactional;
 import com.nonsoft.discuss.service.ForumService;
 import com.nonsoft.web.view.Page;
 
 public class ForumList extends Page {
-    @InjectComponent()
+    @Inject()
     private ForumService forumService;
     
     @Transactional()
