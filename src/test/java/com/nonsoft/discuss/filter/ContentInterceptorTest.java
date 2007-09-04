@@ -6,9 +6,9 @@ import test.WebTestCase;
 
 import com.nonsoft.discuss.domain.IContent;
 import com.nonsoft.domain.Entity;
+import com.nonsoft.ioc.builder.defaults.AspectBuilder;
 import com.nonsoft.ioc.builder.defaults.ComponentBuilder;
 import com.nonsoft.ioc.internal.defaults.DefaultCoreContainer;
-import com.nonsoft.ioc.internal.util.AspectBuilder;
 
 public class ContentInterceptorTest extends WebTestCase {
 

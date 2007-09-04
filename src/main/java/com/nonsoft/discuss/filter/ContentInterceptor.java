@@ -77,7 +77,10 @@ public class ContentInterceptor implements MethodInterceptor {
 
         // Else try to cache the content
         String key = getCacheKey(content, invocation.getMethod().getName());
-        System.out.println("!!! Cache key is: " + key);
+        //System.out.println("!!! Cache key is: " + key);
+        if(logger.isDebugEnabled()){
+            logger.debug("!!! Cache key is: " + key);   
+        }
         CacheEntry entry = cache.get(key);
         if (entry != null && entry.timestamp.equals(getTimestamp(content))) {
             return entry.content;
