@@ -12,7 +12,11 @@ public class ForumTest extends WebTestCase {
         ForumEntity forum = new ForumEntity();
         forum.setTitle("test-forum-1");
         forum.setCreationDate(new Date());
-        IDAO dao = (IDAO) container.getComponentInstance(IDAO.class);
+        
+        // may broken with multipal DAO implementations
+        // See jade_dao_hibernate3_components.xml
+        IDAO dao = (IDAO) container.getComponentInstanceOfType(IDAO.class);
+        assertNotNull(dao);
         dao.saveEntity(forum);
 //        ISessionManager sm = (ISessionManager) container.getComponentInstance(ISessionManager.class);
 //        try {
