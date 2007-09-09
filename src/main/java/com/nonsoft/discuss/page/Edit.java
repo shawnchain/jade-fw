@@ -45,7 +45,7 @@ import com.nonsoft.web.view.Page;
  * @version 2.0, $Id$
  * @since
  */
-
+@Transactional()
 public class Edit extends Page {
     @Inject()
     private ForumService forumService;
@@ -60,7 +60,6 @@ public class Edit extends Page {
     private String event;
     
     @Override
-    @Transactional()
     public void render() throws Throwable {
         if (topicId == null) {
             throw new IllegalArgumentException("No topic specified");
@@ -95,7 +94,6 @@ public class Edit extends Page {
     }
 
     @Override
-    @Transactional()
     public ActionTarget execute(RuntimeData rd) throws Throwable {
         // Check event
         if("cancel".equals(event)){

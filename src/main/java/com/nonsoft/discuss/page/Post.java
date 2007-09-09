@@ -4,7 +4,6 @@ package com.nonsoft.discuss.page;
 import com.nonsoft.annotation.Inject;
 import com.nonsoft.annotation.Parameter;
 import com.nonsoft.annotation.SecurityCheck;
-import com.nonsoft.annotation.Transactional;
 import com.nonsoft.annotation.ValidateForm;
 import com.nonsoft.discuss.domain.IForum;
 import com.nonsoft.discuss.service.ForumService;
@@ -23,7 +22,6 @@ public class Post extends Page {
     /* (non-Javadoc)
      * @see com.nonsoft.web.action.IAction#execute(com.nonsoft.web.controller.RuntimeData)
      */
-    @Transactional
     @ValidateForm    
     @SecurityCheck
     public ActionTarget execute(RuntimeData rd) throws Throwable {

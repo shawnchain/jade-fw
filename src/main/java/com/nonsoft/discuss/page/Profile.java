@@ -54,7 +54,6 @@ public class Profile extends Page {
 //    private String logout;
     
     @Override
-    @Transactional
     @SecurityCheck
     public ActionTarget execute(RuntimeData runtimeData) throws Throwable {
 //        //FIXME this logic could be done by a SecurityProcessor
