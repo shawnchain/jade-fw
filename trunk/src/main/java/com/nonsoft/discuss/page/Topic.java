@@ -8,6 +8,7 @@ import com.nonsoft.discuss.domain.ITopic;
 import com.nonsoft.discuss.service.ForumService;
 import com.nonsoft.web.view.Page;
 
+@Transactional
 public class Topic extends Page {
     @Parameter(expr="request.param.id")
     private Long topicId;
@@ -16,7 +17,6 @@ public class Topic extends Page {
     private ForumService forumService;
     
     @Override
-    @Transactional()
     public void render() throws Throwable {
         if(topicId == null){
             throw new IllegalArgumentException("No topic id specified!");

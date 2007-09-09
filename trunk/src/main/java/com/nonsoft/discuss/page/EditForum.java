@@ -8,6 +8,7 @@ import com.nonsoft.discuss.domain.IForum;
 import com.nonsoft.discuss.service.ForumService;
 import com.nonsoft.web.view.Page;
 
+@Transactional
 public class EditForum extends Page {
     
     @Inject
@@ -17,7 +18,6 @@ public class EditForum extends Page {
     Long forumId;
     
     @Override
-    @Transactional
     public void render() throws Throwable {
         if(forumId == null){
             throw new NullPointerException("Forum id is missing or invalid!");

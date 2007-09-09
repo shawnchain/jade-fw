@@ -14,6 +14,7 @@ import com.nonsoft.web.form.Field;
 import com.nonsoft.web.form.Form;
 import com.nonsoft.web.view.Page;
 
+@Transactional
 public class Reply extends Page {
     @Inject()
     private ForumService forumService;
@@ -67,7 +68,6 @@ public class Reply extends Page {
     }
 
     @Override
-    @Transactional()
     public ActionTarget execute(RuntimeData rd) throws Throwable {
         // Checke event
         if("cancel".equals(event)){

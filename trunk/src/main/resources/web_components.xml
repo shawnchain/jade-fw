@@ -63,5 +63,18 @@
 		<!-- TODO promote to default jade web config -->
 		<interceptor key="securityInterceptor" class="com.nonsoft.discuss.interceptor.SecurityCheckInterceptor" scope="instance" />
 		<interceptor key="validateFormInterceptor" class="com.nonsoft.discuss.interceptor.ValidateFormInterceptor" scope="container" />
+		<!--
+		<interceptor class="com.nonsoft.web.internal.interceptor.RequestTransactionInterceptor" key="requestTransactionInterceptor" scope="container">
+			<property name="sessionManager" optional="true"/>
+			<property name="urlPatterns">
+				<list>
+					<value>/**/*</value>
+					<value>/**/update*</value>
+					<value>/**/save*</value>
+					<value>/**/delete*</value>
+				</list>
+			</property>
+		</interceptor>
+		 -->
 	</advices>
 </container>

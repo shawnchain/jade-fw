@@ -10,19 +10,18 @@ import com.nonsoft.web.action.ActionTarget;
 import com.nonsoft.web.controller.RuntimeData;
 import com.nonsoft.web.view.Page;
 
+@Transactional()
 public class Forum extends Page {
 
     
     @Inject
     private ForumService forumService;
     
-    /*Inject(expr="request.parameters.id",optional=true,fuzzyType=true)*/
-    
-    @Parameter(expr="request.parameters.id") 
+    /*Inject(expr="request.parameters.id",optional=true,fuzzyType=true)*/    
+    @Parameter(expr="request.param.id") 
     private Long forumId;
     
     @Override
-    @Transactional()
     public void render() throws Throwable {
         if(forumId == null){
             throw new NullPointerException("No forum id specified!");
